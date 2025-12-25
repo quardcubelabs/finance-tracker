@@ -1,175 +1,445 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import { Stack, useRouter } from 'expo-router';
+import {
+  ArrowUp,
+  ArrowDown,
+  Plus,
+  ChevronRight,
+  Sparkles,
+} from 'lucide-react-native';
+import Colors from '@/constants/Colors';
+import { quickSendContacts, recentTransactions } from '@/mocks/transactions';
 
 export default function HomeScreen() {
-  const quickActions = [
-    { icon: 'send', title: 'Transfer', route: '/transfer' },
-    { icon: 'download', title: 'Receive', route: '/receive' },
-    { icon: 'qr-code', title: 'Scan QR', route: '/scan-qr' },
-    { icon: 'card', title: 'Pay Bills', route: '/pay-bills' },
-  ];
+  const router = useRouter();
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.greeting}>Good morning!</Text>
-        <Text style={styles.name}>John Doe</Text>
-      </View>
+    <View style={styles.container}>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerStyle: { backgroundColor: Colors.background },
+          headerTitle: () => (
+            <View>
+              <Text style={styles.headerName}>Andrew John</Text>
+              <Text style={styles.headerSubtitle}>Welcome back</Text>
+            </View>
+          ),
+          headerRight: () => (
+            <View style={styles.headerRight}>
+              <TouchableOpacity style={styles.iconButton}>
+                <Text style={styles.notificationDot}>🔔</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.iconButton}>
+                <Text>⚙️</Text>
+              </TouchableOpacity>
+            </View>
+          ),
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.push('/profile')}>
+              <View style={styles.avatar}>
+                <Text style={styles.avatarText}>👤</Text>
+              </View>
+            </TouchableOpacity>
+          ),
+        }}
+      />
 
-      <View style={styles.balanceCard}>
-        <Text style={styles.balanceLabel}>Total Balance</Text>
-        <Text style={styles.balanceAmount}>$12,450.89</Text>
-        <Text style={styles.balanceChange}>+$245.00 from last month</Text>
-      </View>
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+        <View style={styles.balanceCard}>
+          <View style={styles.balanceHeader}>
+            <Text style={styles.balanceLabel}>Balance</Text>
+            <Text style={styles.visaText}>VISA</Text>
+          </View>
+          <Text style={styles.balanceAmount}>$15,398.87</Text>
+          <View style={styles.balanceFooter}>
+            <Text style={styles.cardNumber}>•••• •••• •••• 7281</Text>
+            <Text style={styles.currency}>USD</Text>
+          </View>
+          <View style={styles.cardFooter}>
+            <Text style={styles.cardName}>Andrew John</Text>
+            <TouchableOpacity 
+              style={styles.setBudgetButton}
+              onPress={() => router.push('/set-budget')}
+            >
+              <Text style={styles.setBudgetText}>⚡ Set Budget</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
 
-      <View style={styles.quickActions}>
-        <Text style={styles.sectionTitle}>Quick Actions</Text>
-        <View style={styles.actionsGrid}>
-          {quickActions.map((action, index) => (
-            <TouchableOpacity
-              key={index}
-              style={styles.actionButton}
-              onPress={() => router.push(action.route)}>
-              <Ionicons name={action.icon as any} size={24} color="#4CAF50" />
-              <Text style={styles.actionText}>{action.title}</Text>
+        <View style={styles.actionsRow}>
+          <TouchableOpacity
+            style={[styles.actionButton, styles.actionButtonBlue]}
+            onPress={() => router.push('/transfer')}
+          >
+            <ArrowUp size={24} color="#000" />
+            <Text style={styles.actionText}>Transfer</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.actionButton, styles.actionButtonYellow]}
+            onPress={() => router.push('/receive')}
+          >
+            <ArrowDown size={24} color="#000" />
+            <Text style={styles.actionText}>Receive</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Quick Send</Text>
+            <TouchableOpacity style={styles.seeAllButton}>
+              <Text style={styles.seeAllText}>See All</Text>
+              <ChevronRight size={16} color={Colors.textSecondary} />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.quickSendList}>
+            <TouchableOpacity style={styles.addContact}>
+              <Plus size={24} color={Colors.textSecondary} />
+            </TouchableOpacity>
+            {quickSendContacts.map((contact) => (
+              <TouchableOpacity key={contact.id} style={styles.contact}>
+                <View style={styles.contactAvatar}>
+                  <Text style={styles.contactAvatarText}>{contact.avatar}</Text>
+                </View>
+                <Text style={styles.contactName}>{contact.name}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+
+        <TouchableOpacity
+          style={styles.aiButton}
+          onPress={() => router.push('/assistant')}
+        >
+          <Sparkles size={20} color="#fff" />
+          <Text style={styles.aiButtonText}>AI Assistant</Text>
+        </TouchableOpacity>
+
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Recent Transactions</Text>
+            <TouchableOpacity style={styles.weekSelector}>
+              <Text style={styles.weekText}>Week</Text>
+              <ChevronRight size={16} color="#000" />
+            </TouchableOpacity>
+          </View>
+
+          {recentTransactions.map((transaction) => (
+            <TouchableOpacity 
+              key={transaction.id} 
+              style={styles.transaction}
+              onPress={() => router.push(`/transaction/${transaction.id}` as any)}
+            >
+              <View style={styles.transactionLeft}>
+                <View style={styles.transactionAvatar}>
+                  <Text style={styles.transactionAvatarText}>
+                    {transaction.avatar}
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.transactionName}>{transaction.name}</Text>
+                  <Text style={styles.transactionDate}>{transaction.date}</Text>
+                </View>
+              </View>
+              <Text
+                style={[
+                  styles.transactionAmount,
+                  transaction.type === 'credit' && styles.transactionCredit,
+                ]}
+              >
+                {transaction.type === 'credit' ? '+' : ''}$
+                {transaction.amount.toFixed(2)}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
-      </View>
 
-      <View style={styles.recentTransactions}>
-        <Text style={styles.sectionTitle}>Recent Transactions</Text>
-        <View style={styles.transactionItem}>
-          <Ionicons name="restaurant" size={24} color="#FF6B6B" />
-          <View style={styles.transactionInfo}>
-            <Text style={styles.transactionTitle}>Restaurant</Text>
-            <Text style={styles.transactionDate}>Today, 2:30 PM</Text>
-          </View>
-          <Text style={styles.transactionAmount}>-$45.20</Text>
-        </View>
-        <View style={styles.transactionItem}>
-          <Ionicons name="car" size={24} color="#4ECDC4" />
-          <View style={styles.transactionInfo}>
-            <Text style={styles.transactionTitle}>Gas Station</Text>
-            <Text style={styles.transactionDate}>Yesterday, 8:15 AM</Text>
-          </View>
-          <Text style={styles.transactionAmount}>-$62.50</Text>
-        </View>
-      </View>
-    </ScrollView>
+        <View style={styles.bottomPadding} />
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: Colors.background,
   },
-  header: {
-    padding: 20,
-    paddingTop: 60,
+  scrollView: {
+    flex: 1,
   },
-  greeting: {
+  headerName: {
     fontSize: 16,
-    color: '#666',
+    fontWeight: '600' as const,
+    color: Colors.text,
   },
-  name: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
+  headerSubtitle: {
+    fontSize: 13,
+    color: Colors.textSecondary,
+  },
+  headerRight: {
+    flexDirection: 'row',
+    gap: 8,
+    marginRight: 16,
+  },
+  iconButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: Colors.cardBackground,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  notificationDot: {
+    fontSize: 18,
+  },
+  avatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: Colors.cardBackground,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 16,
+  },
+  avatarText: {
+    fontSize: 20,
   },
   balanceCard: {
-    backgroundColor: 'white',
-    margin: 20,
-    padding: 20,
-    borderRadius: 15,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: Colors.primary,
+    borderRadius: 24,
+    padding: 24,
+    margin: 16,
+    marginTop: 8,
+  },
+  balanceHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
   },
   balanceLabel: {
     fontSize: 14,
-    color: '#666',
+    color: Colors.text,
+    fontWeight: '500' as const,
+  },
+  visaText: {
+    fontSize: 16,
+    fontWeight: '700' as const,
+    color: Colors.text,
   },
   balanceAmount: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#333',
-    marginVertical: 5,
+    fontSize: 42,
+    fontWeight: '700' as const,
+    color: Colors.text,
+    marginBottom: 8,
   },
-  balanceChange: {
+  balanceFooter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 16,
+  },
+  cardNumber: {
     fontSize: 14,
-    color: '#4CAF50',
+    color: Colors.text,
+    fontWeight: '500' as const,
   },
-  quickActions: {
-    padding: 20,
+  currency: {
+    fontSize: 12,
+    color: Colors.text,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    borderRadius: 4,
+  },
+  cardFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  cardName: {
+    fontSize: 14,
+    color: Colors.text,
+    fontWeight: '500' as const,
+  },
+  setBudgetButton: {
+    backgroundColor: Colors.text,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+  },
+  setBudgetText: {
+    color: Colors.primary,
+    fontSize: 13,
+    fontWeight: '600' as const,
+  },
+  actionsRow: {
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    gap: 12,
+    marginBottom: 24,
+  },
+  actionButton: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 16,
+    borderRadius: 16,
+  },
+  actionButtonBlue: {
+    backgroundColor: Colors.lightBlue,
+  },
+  actionButtonYellow: {
+    backgroundColor: Colors.lightYellow,
+  },
+  actionText: {
+    fontSize: 15,
+    fontWeight: '600' as const,
+    color: Colors.text,
+  },
+  section: {
+    paddingHorizontal: 16,
+    marginBottom: 24,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
-    marginBottom: 15,
+    fontWeight: '700' as const,
+    color: Colors.text,
   },
-  actionsGrid: {
+  seeAllButton: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  actionButton: {
-    backgroundColor: 'white',
-    width: '48%',
-    padding: 20,
-    borderRadius: 15,
     alignItems: 'center',
-    marginBottom: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    gap: 4,
   },
-  actionText: {
+  seeAllText: {
     fontSize: 14,
-    color: '#333',
-    marginTop: 8,
-    fontWeight: '500',
+    color: Colors.textSecondary,
   },
-  recentTransactions: {
-    padding: 20,
+  quickSendList: {
+    flexDirection: 'row',
+    gap: 16,
   },
-  transactionItem: {
+  addContact: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: Colors.cardBackground,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: Colors.border,
+    borderStyle: 'dashed' as const,
+  },
+  contact: {
+    alignItems: 'center',
+    gap: 8,
+  },
+  contactAvatar: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: Colors.cardBackground,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  contactAvatarText: {
+    fontSize: 28,
+  },
+  contactName: {
+    fontSize: 13,
+    color: Colors.text,
+  },
+  aiButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 15,
-    borderRadius: 10,
-    marginBottom: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
+    justifyContent: 'center',
+    gap: 8,
+    backgroundColor: Colors.text,
+    marginHorizontal: 16,
+    paddingVertical: 16,
+    borderRadius: 16,
+    marginBottom: 24,
   },
-  transactionInfo: {
-    flex: 1,
-    marginLeft: 15,
+  aiButtonText: {
+    color: Colors.cardBackground,
+    fontSize: 15,
+    fontWeight: '600' as const,
   },
-  transactionTitle: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#333',
+  weekSelector: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: Colors.primary,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 12,
+  },
+  weekText: {
+    fontSize: 13,
+    fontWeight: '600' as const,
+    color: Colors.text,
+  },
+  transaction: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: Colors.cardBackground,
+    padding: 16,
+    borderRadius: 16,
+    marginBottom: 12,
+  },
+  transactionLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  transactionAvatar: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: Colors.background,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  transactionAvatarText: {
+    fontSize: 24,
+  },
+  transactionName: {
+    fontSize: 15,
+    fontWeight: '600' as const,
+    color: Colors.text,
+    marginBottom: 2,
   },
   transactionDate: {
-    fontSize: 14,
-    color: '#666',
-    marginTop: 2,
+    fontSize: 13,
+    color: Colors.textSecondary,
   },
   transactionAmount: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#FF6B6B',
+    fontWeight: '700' as const,
+    color: Colors.text,
+  },
+  transactionCredit: {
+    color: '#00AA00',
+  },
+  bottomPadding: {
+    height: 40,
   },
 });
