@@ -1,18 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, Alert } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import {
-  User,
-  Bell,
-  Lock,
-  CreditCard,
-  HelpCircle,
-  FileText,
-  LogOut,
-  ChevronRight,
-  Shield,
-  Moon,
-} from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 import { usePreferences } from '@/contexts/PreferencesContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -105,20 +94,20 @@ export default function SettingsScreen() {
           <TouchableOpacity style={styles.settingItem} onPress={handlePersonalInfo}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: Colors.lightBlue }]}>
-                <User size={20} color={Colors.text} />
+                <Ionicons name="person" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Personal Information</Text>
             </View>
-            <ChevronRight size={20} color={Colors.textSecondary} />
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.settingItem} onPress={handlePaymentMethods}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: Colors.lightYellow }]}>
-                <CreditCard size={20} color={Colors.text} />
+                <Ionicons name="card" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Payment Methods</Text>
             </View>
-            <ChevronRight size={20} color={Colors.textSecondary} />
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
         </View>
 
@@ -127,7 +116,7 @@ export default function SettingsScreen() {
           <View style={styles.settingItem}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: '#FFD0E0' }]}>
-                <Bell size={20} color={Colors.text} />
+                <Ionicons name="notifications" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Notifications</Text>
             </View>
@@ -141,7 +130,7 @@ export default function SettingsScreen() {
           <View style={styles.settingItem}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: '#E0D5FF' }]}>
-                <Moon size={20} color={Colors.text} />
+                <Ionicons name="moon" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Dark Mode</Text>
             </View>
@@ -159,7 +148,7 @@ export default function SettingsScreen() {
           <View style={styles.settingItem}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: Colors.lightBlue }]}>
-                <Shield size={20} color={Colors.text} />
+                <Ionicons name="shield-checkmark" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Biometric Authentication</Text>
             </View>
@@ -173,11 +162,11 @@ export default function SettingsScreen() {
           <TouchableOpacity style={styles.settingItem} onPress={handleChangePassword}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: Colors.lightYellow }]}>
-                <Lock size={20} color={Colors.text} />
+                <Ionicons name="lock-closed" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Change Password</Text>
             </View>
-            <ChevronRight size={20} color={Colors.textSecondary} />
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
         </View>
 
@@ -186,25 +175,25 @@ export default function SettingsScreen() {
           <TouchableOpacity style={styles.settingItem} onPress={handleHelpCenter}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: '#FFD0E0' }]}>
-                <HelpCircle size={20} color={Colors.text} />
+                <Ionicons name="help-circle" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Help Center</Text>
             </View>
-            <ChevronRight size={20} color={Colors.textSecondary} />
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.settingItem} onPress={handleTermsPrivacy}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: '#E0D5FF' }]}>
-                <FileText size={20} color={Colors.text} />
+                <Ionicons name="document-text" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Terms & Privacy</Text>
             </View>
-            <ChevronRight size={20} color={Colors.textSecondary} />
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
         </View>
 
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <LogOut size={20} color="#FF4444" />
+          <Ionicons name="log-out" size={20} color="#FF4444" />
           <Text style={styles.logoutText}>Log Out</Text>
         </TouchableOpacity>
 

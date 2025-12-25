@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { Home, TrendingUp, CreditCard, Settings } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import Colors from '@/constants/Colors';
 
@@ -28,7 +28,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Ionicons name="home" size={size} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -36,7 +36,7 @@ export default function TabLayout() {
         options={{
           title: 'Insights',
           tabBarIcon: ({ color, size }) => (
-            <TrendingUp size={size} color={color} />
+            <Ionicons name="trending-up" size={size} color={color} />
           ),
         }}
       />
@@ -45,7 +45,7 @@ export default function TabLayout() {
         options={{
           title: 'Cards',
           tabBarIcon: ({ color, size }) => (
-            <CreditCard size={size} color={color} />
+            <Ionicons name="card" size={size} color={color} />
           ),
         }}
       />
@@ -54,7 +54,7 @@ export default function TabLayout() {
         options={{
           title: 'Settings',
           tabBarIcon: ({ color, size }) => (
-            <Settings size={size} color={color} />
+            <Ionicons name="settings" size={size} color={color} />
           ),
         }}
       />

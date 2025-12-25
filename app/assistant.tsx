@@ -10,15 +10,7 @@ import {
   Platform,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import {
-  ArrowLeft,
-  Receipt,
-  ArrowLeftRight,
-  Wallet,
-  Lightbulb,
-  Mic,
-  Send,
-} from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { Audio } from 'expo-av';
 import Colors from '@/constants/Colors';
 
@@ -143,7 +135,7 @@ export default function AssistantScreen() {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <ArrowLeft size={24} color={Colors.text} />
+              <Ionicons name="arrow-back" size={24} color={Colors.text} />
             </TouchableOpacity>
           ),
         }}
@@ -162,28 +154,28 @@ export default function AssistantScreen() {
                 style={styles.quickActionButton}
                 onPress={() => router.push('/pay-bills' as any)}
               >
-                <Receipt size={24} color={Colors.text} />
+                <Ionicons name="receipt" size={24} color={Colors.text} />
                 <Text style={styles.quickActionText}>Pay Bills</Text>
               </TouchableOpacity>
               <TouchableOpacity 
                 style={styles.quickActionButton}
                 onPress={() => router.push('/transfer')}
               >
-                <ArrowLeftRight size={24} color={Colors.text} />
+                <Ionicons name="swap-horizontal" size={24} color={Colors.text} />
                 <Text style={styles.quickActionText}>Transfer</Text>
               </TouchableOpacity>
               <TouchableOpacity 
                 style={styles.quickActionButton}
                 onPress={() => router.push('/balance' as any)}
               >
-                <Wallet size={24} color={Colors.text} />
+                <Ionicons name="wallet" size={24} color={Colors.text} />
                 <Text style={styles.quickActionText}>Balance</Text>
               </TouchableOpacity>
               <TouchableOpacity 
                 style={styles.quickActionButton}
                 onPress={() => router.push('/invest' as any)}
               >
-                <Lightbulb size={24} color={Colors.text} />
+                <Ionicons name="bulb" size={24} color={Colors.text} />
                 <Text style={styles.quickActionText}>Invest</Text>
               </TouchableOpacity>
             </View>
@@ -290,13 +282,13 @@ export default function AssistantScreen() {
           style={[styles.micButton, isRecording && styles.micButtonRecording]}
           onPress={handleMicPress}
         >
-          <Mic size={20} color={isRecording ? '#FF4444' : Colors.text} />
+          <Ionicons name="mic" size={20} color={isRecording ? '#FF4444' : Colors.text} />
         </TouchableOpacity>
         <TouchableOpacity 
           style={styles.sendButton}
           onPress={handleSendMessage}
         >
-          <Send size={20} color={Colors.cardBackground} />
+          <Ionicons name="send" size={20} color={Colors.cardBackground} />
         </TouchableOpacity>
       </View>
     </View>

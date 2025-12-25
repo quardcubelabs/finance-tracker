@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Stack } from 'expo-router';
-import { TrendingUp, TrendingDown, PieChart } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 
 const spendingCategories = [
@@ -73,7 +73,7 @@ export default function InsightsScreen() {
         <View style={styles.summaryCards}>
           <View style={[styles.summaryCard, { backgroundColor: Colors.primary }]}>
             <View style={styles.summaryIcon}>
-              <TrendingUp size={20} color={Colors.text} />
+              <Ionicons name="trending-up" size={20} color={Colors.text} />
             </View>
             <Text style={styles.summaryLabel}>Income</Text>
             <Text style={styles.summaryAmount}>$5,600</Text>
@@ -81,7 +81,7 @@ export default function InsightsScreen() {
           </View>
           <View style={[styles.summaryCard, { backgroundColor: Colors.cardBackground }]}>
             <View style={styles.summaryIcon}>
-              <TrendingDown size={20} color="#FF4444" />
+              <Ionicons name="trending-down" size={20} color="#FF4444" />
             </View>
             <Text style={styles.summaryLabel}>Expenses</Text>
             <Text style={styles.summaryAmount}>$3,520</Text>
@@ -92,7 +92,7 @@ export default function InsightsScreen() {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Spending Breakdown</Text>
-            <PieChart size={20} color={Colors.text} />
+            <Ionicons name="pie-chart" size={20} color={Colors.text} />
           </View>
 
           <View style={styles.pieChartContainer}>

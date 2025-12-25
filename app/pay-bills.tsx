@@ -8,14 +8,7 @@ import {
   TextInput,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import {
-  ArrowLeft,
-  Zap,
-  Droplets,
-  Wifi,
-  Smartphone,
-  Search,
-} from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 
 interface Bill {
@@ -74,13 +67,13 @@ export default function PayBillsScreen() {
   const getIconComponent = (iconName: string) => {
     switch (iconName) {
       case 'zap':
-        return <Zap size={24} color={Colors.text} />;
+        return <Ionicons name="flash" size={24} color={Colors.text} />;
       case 'droplets':
-        return <Droplets size={24} color={Colors.text} />;
+        return <Ionicons name="water" size={24} color={Colors.text} />;
       case 'wifi':
-        return <Wifi size={24} color={Colors.text} />;
+        return <Ionicons name="wifi" size={24} color={Colors.text} />;
       case 'smartphone':
-        return <Smartphone size={24} color={Colors.text} />;
+        return <Ionicons name="phone-portrait" size={24} color={Colors.text} />;
       default:
         return null;
     }
@@ -98,7 +91,7 @@ export default function PayBillsScreen() {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <ArrowLeft size={24} color={Colors.text} />
+              <Ionicons name="arrow-back" size={24} color={Colors.text} />
             </TouchableOpacity>
           ),
         }}
@@ -107,7 +100,7 @@ export default function PayBillsScreen() {
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <View style={styles.searchContainer}>
-            <Search size={20} color={Colors.textSecondary} />
+            <Ionicons name="search" size={20} color={Colors.textSecondary} />
             <TextInput
               style={styles.searchInput}
               placeholder="Search bills..."

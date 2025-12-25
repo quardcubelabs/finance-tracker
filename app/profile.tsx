@@ -7,17 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import {
-  ArrowLeft,
-  User,
-  Mail,
-  Phone,
-  MapPin,
-  CreditCard,
-  Shield,
-  Bell,
-  ChevronRight,
-} from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 
 export default function ProfileScreen() {
@@ -35,7 +25,7 @@ export default function ProfileScreen() {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <ArrowLeft size={24} color={Colors.text} />
+              <Ionicons name="arrow-back" size={24} color={Colors.text} />
             </TouchableOpacity>
           ),
         }}
@@ -56,52 +46,52 @@ export default function ProfileScreen() {
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: Colors.lightBlue }]}>
-                <User size={20} color={Colors.text} />
+                <Ionicons name="person" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Full Name</Text>
             </View>
             <View style={styles.menuItemRight}>
               <Text style={styles.menuItemValue}>Andrew John</Text>
-              <ChevronRight size={20} color={Colors.textSecondary} />
+              <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: Colors.lightYellow }]}>
-                <Mail size={20} color={Colors.text} />
+                <Ionicons name="mail" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Email</Text>
             </View>
             <View style={styles.menuItemRight}>
               <Text style={styles.menuItemValue}>andrew@email.com</Text>
-              <ChevronRight size={20} color={Colors.textSecondary} />
+              <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: '#FFE5E5' }]}>
-                <Phone size={20} color={Colors.text} />
+                <Ionicons name="call" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Phone</Text>
             </View>
             <View style={styles.menuItemRight}>
               <Text style={styles.menuItemValue}>+1 234 567 890</Text>
-              <ChevronRight size={20} color={Colors.textSecondary} />
+              <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: '#E5F5E5' }]}>
-                <MapPin size={20} color={Colors.text} />
+                <Ionicons name="location" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Address</Text>
             </View>
             <View style={styles.menuItemRight}>
               <Text style={styles.menuItemValue}>New York, USA</Text>
-              <ChevronRight size={20} color={Colors.textSecondary} />
+              <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
             </View>
           </TouchableOpacity>
         </View>
@@ -112,31 +102,31 @@ export default function ProfileScreen() {
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: Colors.primary }]}>
-                <CreditCard size={20} color={Colors.text} />
+                <Ionicons name="card" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Payment Methods</Text>
             </View>
-            <ChevronRight size={20} color={Colors.textSecondary} />
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: '#E5E5FF' }]}>
-                <Shield size={20} color={Colors.text} />
+                <Ionicons name="shield-checkmark" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Security</Text>
             </View>
-            <ChevronRight size={20} color={Colors.textSecondary} />
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: '#FFE5F5' }]}>
-                <Bell size={20} color={Colors.text} />
+                <Ionicons name="notifications" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Notifications</Text>
             </View>
-            <ChevronRight size={20} color={Colors.textSecondary} />
+            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
         </View>
 

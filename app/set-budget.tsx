@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import { ArrowLeft, Calendar, DollarSign } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 
 const categories = [
@@ -38,7 +38,7 @@ export default function SetBudgetScreen() {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <ArrowLeft size={24} color={Colors.text} />
+              <Ionicons name="arrow-back" size={24} color={Colors.text} />
             </TouchableOpacity>
           ),
         }}
@@ -68,7 +68,7 @@ export default function SetBudgetScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Budget Amount</Text>
           <View style={styles.amountInput}>
-            <DollarSign size={24} color={Colors.textSecondary} />
+            <Ionicons name="logo-usd" size={24} color={Colors.textSecondary} />
             <TextInput
               style={styles.input}
               placeholder="0.00"
@@ -92,7 +92,7 @@ export default function SetBudgetScreen() {
                 ]}
                 onPress={() => setPeriod(p)}
               >
-                <Calendar
+                <Ionicons name="calendar"
                   size={20}
                   color={period === p ? Colors.text : Colors.textSecondary}
                 />

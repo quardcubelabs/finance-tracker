@@ -11,7 +11,7 @@ import {
   Alert,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Lock, Mail } from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -36,7 +36,7 @@ export default function LoginScreen() {
     setIsLoading(true);
     console.log('Attempting login with:', email);
 
-    const result = await login(email, password);
+    const result = await login(email);
 
     setIsLoading(false);
 
@@ -69,7 +69,7 @@ export default function LoginScreen() {
         <View style={styles.form}>
           <View style={styles.inputContainer}>
             <View style={styles.inputIcon}>
-              <Mail size={20} color={Colors.textSecondary} />
+              <Ionicons name="mail" size={20} color={Colors.textSecondary} />
             </View>
             <TextInput
               style={styles.input}
@@ -86,7 +86,7 @@ export default function LoginScreen() {
 
           <View style={styles.inputContainer}>
             <View style={styles.inputIcon}>
-              <Lock size={20} color={Colors.textSecondary} />
+              <Ionicons name="lock-closed" size={20} color={Colors.textSecondary} />
             </View>
             <TextInput
               style={styles.input}

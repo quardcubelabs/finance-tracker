@@ -7,13 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import {
-  ArrowUp,
-  ArrowDown,
-  Plus,
-  ChevronRight,
-  Sparkles,
-} from 'lucide-react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
 import { quickSendContacts, recentTransactions } from '@/mocks/transactions';
 
@@ -79,14 +73,14 @@ export default function HomeScreen() {
             style={[styles.actionButton, styles.actionButtonBlue]}
             onPress={() => router.push('/transfer')}
           >
-            <ArrowUp size={24} color="#000" />
+            <Ionicons name="arrow-up" size={24} color="#000" />
             <Text style={styles.actionText}>Transfer</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.actionButton, styles.actionButtonYellow]}
             onPress={() => router.push('/receive')}
           >
-            <ArrowDown size={24} color="#000" />
+            <Ionicons name="arrow-down" size={24} color="#000" />
             <Text style={styles.actionText}>Receive</Text>
           </TouchableOpacity>
         </View>
@@ -96,13 +90,13 @@ export default function HomeScreen() {
             <Text style={styles.sectionTitle}>Quick Send</Text>
             <TouchableOpacity style={styles.seeAllButton}>
               <Text style={styles.seeAllText}>See All</Text>
-              <ChevronRight size={16} color={Colors.textSecondary} />
+              <Ionicons name="chevron-forward" size={16} color={Colors.textSecondary} />
             </TouchableOpacity>
           </View>
 
           <View style={styles.quickSendList}>
             <TouchableOpacity style={styles.addContact}>
-              <Plus size={24} color={Colors.textSecondary} />
+              <Ionicons name="add" size={24} color={Colors.textSecondary} />
             </TouchableOpacity>
             {quickSendContacts.map((contact) => (
               <TouchableOpacity key={contact.id} style={styles.contact}>
@@ -119,7 +113,7 @@ export default function HomeScreen() {
           style={styles.aiButton}
           onPress={() => router.push('/assistant')}
         >
-          <Sparkles size={20} color="#fff" />
+          <Ionicons name="sparkles" size={20} color="#fff" />
           <Text style={styles.aiButtonText}>AI Assistant</Text>
         </TouchableOpacity>
 
@@ -128,7 +122,7 @@ export default function HomeScreen() {
             <Text style={styles.sectionTitle}>Recent Transactions</Text>
             <TouchableOpacity style={styles.weekSelector}>
               <Text style={styles.weekText}>Week</Text>
-              <ChevronRight size={16} color="#000" />
+              <Ionicons name="chevron-forward" size={16} color="#000" />
             </TouchableOpacity>
           </View>
 

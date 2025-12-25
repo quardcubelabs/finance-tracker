@@ -33,7 +33,7 @@ export const [AuthContext, useAuth] = createContextHook(() => {
     }
   };
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string) => {
     try {
       console.log('Login attempt:', email);
       
