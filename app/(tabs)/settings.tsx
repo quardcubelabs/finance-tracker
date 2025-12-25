@@ -1,239 +1,336 @@
-import { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, Alert } from 'react-native';
+import { Stack, useRouter } from 'expo-router';
+import {
+  User,
+  Bell,
+  Lock,
+  CreditCard,
+  HelpCircle,
+  FileText,
+  LogOut,
+  ChevronRight,
+  Shield,
+  Moon,
+} from 'lucide-react-native';
+import Colors from '@/constants/Colors';
+import { usePreferences } from '@/contexts/PreferencesContext';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function SettingsScreen() {
-  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
-  const [biometricsEnabled, setBiometricsEnabled] = useState(false);
-  const [darkModeEnabled, setDarkModeEnabled] = useState(false);
+  const router = useRouter();
+  const { user, logout } = useAuth();
+  const {
+    notificationsEnabled,
+    biometricsEnabled,
+    darkModeEnabled,
+    toggleNotifications,
+    toggleBiometrics,
+    toggleDarkMode,
+  } = usePreferences();
 
-  const settingsGroups = [
-    {
-      title: 'Account',
-      items: [
-        { icon: 'person', title: 'Profile', subtitle: 'Manage your profile information' },
-        { icon: 'card', title: 'Payment Methods', subtitle: 'Manage cards and accounts' },
-        { icon: 'shield-checkmark', title: 'Security', subtitle: 'Password and security settings' },
+  const handleLogout = () => {
+    Alert.alert(
+      'Log Out',
+      'Are you sure you want to log out?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Log Out',
+          style: 'destructive',
+          onPress: async () => {
+            await logout();
+            router.replace('/login');
+          },
+        },
       ]
-    },
-    {
-      title: 'Preferences',
-      items: [
-        { icon: 'moon', title: 'Dark Mode', subtitle: 'Enable dark theme', hasSwitch: true, value: darkModeEnabled, onToggle: setDarkModeEnabled },
-        { icon: 'notifications', title: 'Notifications', subtitle: 'Push notification settings', hasSwitch: true, value: notificationsEnabled, onToggle: setNotificationsEnabled },
-        { icon: 'finger-print', title: 'Biometric Login', subtitle: 'Use fingerprint or Face ID', hasSwitch: true, value: biometricsEnabled, onToggle: setBiometricsEnabled },
-        { icon: 'language', title: 'Language', subtitle: 'English (US)' },
-        { icon: 'globe', title: 'Currency', subtitle: 'USD ($)' },
-      ]
-    },
-    {
-      title: 'Support',
-      items: [
-        { icon: 'help-circle', title: 'Help Center', subtitle: 'Get help and support' },
-        { icon: 'chatbubble', title: 'Contact Us', subtitle: 'Send us a message' },
-        { icon: 'star', title: 'Rate App', subtitle: 'Rate us on the App Store' },
-        { icon: 'document-text', title: 'Terms of Service', subtitle: 'Read our terms' },
-        { icon: 'lock-closed', title: 'Privacy Policy', subtitle: 'Read our privacy policy' },
-      ]
-    }
-  ];
+    );
+  };
 
-  const renderSettingItem = (item: any, index: number) => (
-    <TouchableOpacity key={index} style={styles.settingItem}>
-      <View style={styles.settingIcon}>
-        <Ionicons name={item.icon as any} size={20} color="#4CAF50" />
-      </View>
-      <View style={styles.settingText}>
-        <Text style={styles.settingTitle}>{item.title}</Text>
-        <Text style={styles.settingSubtitle}>{item.subtitle}</Text>
-      </View>
-      {item.hasSwitch ? (
-        <Switch
-          value={item.value}
-          onValueChange={item.onToggle}
-          trackColor={{ false: '#E0E0E0', true: '#4CAF50' }}
-          thumbColor={item.value ? '#fff' : '#f4f3f4'}
-        />
-      ) : (
-        <Ionicons name="chevron-forward" size={20} color="#999" />
-      )}
-    </TouchableOpacity>
-  );
+  const handleEditProfile = () => {
+    console.log('Edit profile clicked');
+    Alert.alert('Edit Profile', 'Profile editing feature');
+  };
+
+  const handlePersonalInfo = () => {
+    console.log('Personal info clicked');
+    Alert.alert('Personal Information', 'View and edit your personal details');
+  };
+
+  const handlePaymentMethods = () => {
+    console.log('Payment methods clicked');
+    Alert.alert('Payment Methods', 'Manage your payment methods');
+  };
+
+  const handleChangePassword = () => {
+    console.log('Change password clicked');
+    Alert.alert('Change Password', 'Update your account password');
+  };
+
+  const handleHelpCenter = () => {
+    console.log('Help center clicked');
+    Alert.alert('Help Center', 'Get help and support');
+  };
+
+  const handleTermsPrivacy = () => {
+    console.log('Terms & Privacy clicked');
+    Alert.alert('Terms & Privacy', 'View our terms of service and privacy policy');
+  };
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Settings</Text>
-      </View>
-
-      <View style={styles.profileCard}>
-        <View style={styles.profileImage}>
-          <Ionicons name="person" size={40} color="white" />
+    <View style={styles.container}>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerStyle: { backgroundColor: Colors.background },
+          headerTitle: 'Settings',
+        }}
+      />
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+        <View style={styles.profileSection}>
+          <View style={styles.profileAvatar}>
+            <Text style={styles.profileAvatarText}>👤</Text>
+          </View>
+          <View style={styles.profileInfo}>
+            <Text style={styles.profileName}>{user?.name || 'Andrew John'}</Text>
+            <Text style={styles.profileEmail}>{user?.email || 'andrew.john@email.com'}</Text>
+          </View>
+          <TouchableOpacity style={styles.editButton} onPress={handleEditProfile}>
+            <Text style={styles.editButtonText}>Edit</Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.profileInfo}>
-          <Text style={styles.profileName}>John Doe</Text>
-          <Text style={styles.profileEmail}>john.doe@email.com</Text>
-        </View>
-        <TouchableOpacity style={styles.editButton}>
-          <Ionicons name="pencil" size={16} color="#4CAF50" />
-        </TouchableOpacity>
-      </View>
 
-      {settingsGroups.map((group, groupIndex) => (
-        <View key={groupIndex} style={styles.settingsGroup}>
-          <Text style={styles.groupTitle}>{group.title}</Text>
-          <View style={styles.groupItems}>
-            {group.items.map((item, itemIndex) => renderSettingItem(item, itemIndex))}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Account</Text>
+          <TouchableOpacity style={styles.settingItem} onPress={handlePersonalInfo}>
+            <View style={styles.settingLeft}>
+              <View style={[styles.settingIcon, { backgroundColor: Colors.lightBlue }]}>
+                <User size={20} color={Colors.text} />
+              </View>
+              <Text style={styles.settingText}>Personal Information</Text>
+            </View>
+            <ChevronRight size={20} color={Colors.textSecondary} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.settingItem} onPress={handlePaymentMethods}>
+            <View style={styles.settingLeft}>
+              <View style={[styles.settingIcon, { backgroundColor: Colors.lightYellow }]}>
+                <CreditCard size={20} color={Colors.text} />
+              </View>
+              <Text style={styles.settingText}>Payment Methods</Text>
+            </View>
+            <ChevronRight size={20} color={Colors.textSecondary} />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Preferences</Text>
+          <View style={styles.settingItem}>
+            <View style={styles.settingLeft}>
+              <View style={[styles.settingIcon, { backgroundColor: '#FFD0E0' }]}>
+                <Bell size={20} color={Colors.text} />
+              </View>
+              <Text style={styles.settingText}>Notifications</Text>
+            </View>
+            <Switch
+              value={notificationsEnabled}
+              onValueChange={toggleNotifications}
+              trackColor={{ false: Colors.border, true: Colors.primary }}
+              thumbColor={Colors.cardBackground}
+            />
+          </View>
+          <View style={styles.settingItem}>
+            <View style={styles.settingLeft}>
+              <View style={[styles.settingIcon, { backgroundColor: '#E0D5FF' }]}>
+                <Moon size={20} color={Colors.text} />
+              </View>
+              <Text style={styles.settingText}>Dark Mode</Text>
+            </View>
+            <Switch
+              value={darkModeEnabled}
+              onValueChange={toggleDarkMode}
+              trackColor={{ false: Colors.border, true: Colors.primary }}
+              thumbColor={Colors.cardBackground}
+            />
           </View>
         </View>
-      ))}
 
-      <TouchableOpacity style={styles.logoutButton}>
-        <Ionicons name="log-out" size={20} color="#FF6B6B" />
-        <Text style={styles.logoutText}>Sign Out</Text>
-      </TouchableOpacity>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Security</Text>
+          <View style={styles.settingItem}>
+            <View style={styles.settingLeft}>
+              <View style={[styles.settingIcon, { backgroundColor: Colors.lightBlue }]}>
+                <Shield size={20} color={Colors.text} />
+              </View>
+              <Text style={styles.settingText}>Biometric Authentication</Text>
+            </View>
+            <Switch
+              value={biometricsEnabled}
+              onValueChange={toggleBiometrics}
+              trackColor={{ false: Colors.border, true: Colors.primary }}
+              thumbColor={Colors.cardBackground}
+            />
+          </View>
+          <TouchableOpacity style={styles.settingItem} onPress={handleChangePassword}>
+            <View style={styles.settingLeft}>
+              <View style={[styles.settingIcon, { backgroundColor: Colors.lightYellow }]}>
+                <Lock size={20} color={Colors.text} />
+              </View>
+              <Text style={styles.settingText}>Change Password</Text>
+            </View>
+            <ChevronRight size={20} color={Colors.textSecondary} />
+          </TouchableOpacity>
+        </View>
 
-      <View style={styles.version}>
-        <Text style={styles.versionText}>Version 1.0.0</Text>
-      </View>
-    </ScrollView>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Support</Text>
+          <TouchableOpacity style={styles.settingItem} onPress={handleHelpCenter}>
+            <View style={styles.settingLeft}>
+              <View style={[styles.settingIcon, { backgroundColor: '#FFD0E0' }]}>
+                <HelpCircle size={20} color={Colors.text} />
+              </View>
+              <Text style={styles.settingText}>Help Center</Text>
+            </View>
+            <ChevronRight size={20} color={Colors.textSecondary} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.settingItem} onPress={handleTermsPrivacy}>
+            <View style={styles.settingLeft}>
+              <View style={[styles.settingIcon, { backgroundColor: '#E0D5FF' }]}>
+                <FileText size={20} color={Colors.text} />
+              </View>
+              <Text style={styles.settingText}>Terms & Privacy</Text>
+            </View>
+            <ChevronRight size={20} color={Colors.textSecondary} />
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+          <LogOut size={20} color="#FF4444" />
+          <Text style={styles.logoutText}>Log Out</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.version}>Version 1.0.0</Text>
+
+        <View style={styles.bottomPadding} />
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: Colors.background,
   },
-  header: {
-    padding: 20,
-    paddingTop: 60,
+  scrollView: {
+    flex: 1,
   },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  profileCard: {
-    backgroundColor: 'white',
-    margin: 20,
-    padding: 20,
-    borderRadius: 15,
+  profileSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: Colors.cardBackground,
+    marginHorizontal: 16,
+    marginTop: 16,
+    padding: 20,
+    borderRadius: 16,
+    marginBottom: 24,
   },
-  profileImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: '#4CAF50',
+  profileAvatar: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: Colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  profileAvatarText: {
+    fontSize: 32,
   },
   profileInfo: {
     flex: 1,
-    marginLeft: 15,
+    marginLeft: 16,
   },
   profileName: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
+    fontWeight: '700' as const,
+    color: Colors.text,
+    marginBottom: 4,
   },
   profileEmail: {
     fontSize: 14,
-    color: '#666',
-    marginTop: 2,
+    color: Colors.textSecondary,
   },
   editButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: '#f0f0f0',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: Colors.text,
+    paddingHorizontal: 20,
+    paddingVertical: 8,
+    borderRadius: 16,
   },
-  settingsGroup: {
-    marginBottom: 30,
+  editButtonText: {
+    fontSize: 14,
+    fontWeight: '600' as const,
+    color: Colors.cardBackground,
   },
-  groupTitle: {
+  section: {
+    paddingHorizontal: 16,
+    marginBottom: 24,
+  },
+  sectionTitle: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#333',
-    marginLeft: 20,
-    marginBottom: 10,
-  },
-  groupItems: {
-    backgroundColor: 'white',
-    marginHorizontal: 20,
-    borderRadius: 15,
-    overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    fontWeight: '700' as const,
+    color: Colors.text,
+    marginBottom: 12,
+    paddingLeft: 4,
   },
   settingItem: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
+    backgroundColor: Colors.cardBackground,
+    padding: 16,
+    borderRadius: 16,
+    marginBottom: 8,
+  },
+  settingLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
   },
   settingIcon: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: '#f0f9f0',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 15,
   },
   settingText: {
-    flex: 1,
-  },
-  settingTitle: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#333',
-  },
-  settingSubtitle: {
-    fontSize: 14,
-    color: '#666',
-    marginTop: 2,
+    fontSize: 15,
+    fontWeight: '600' as const,
+    color: Colors.text,
   },
   logoutButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
-    marginHorizontal: 20,
-    padding: 15,
-    borderRadius: 15,
-    marginTop: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    gap: 8,
+    backgroundColor: Colors.cardBackground,
+    marginHorizontal: 16,
+    paddingVertical: 16,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#FF4444',
   },
   logoutText: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#FF6B6B',
-    marginLeft: 10,
+    fontSize: 15,
+    fontWeight: '600' as const,
+    color: '#FF4444',
   },
   version: {
-    alignItems: 'center',
-    padding: 20,
+    textAlign: 'center',
+    fontSize: 13,
+    color: Colors.textSecondary,
+    marginTop: 24,
   },
-  versionText: {
-    fontSize: 14,
-    color: '#999',
+  bottomPadding: {
+    height: 40,
   },
 });
