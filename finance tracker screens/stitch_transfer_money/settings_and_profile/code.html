@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings and Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#D2F86D", // Lime green from the screenshot
+                        secondary: "#FFDFC6", // Peach/orange accent seen in buttons
+                        "background-light": "#F8F7F2", // Creamy off-white background
+                        "background-dark": "#121212", // Dark mode background
+                        "surface-light": "#FFFFFF", // White cards
+                        "surface-dark": "#1E1E1E", // Dark cards
+                    },
+                    fontFamily: {
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1.5rem", // Rounded aesthetic
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                        '3xl': '2rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }.toggle-checkbox:checked {
+            right: 0;
+            border-color: #D2F86D;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #D2F86D;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen text-gray-900 dark:text-gray-100 antialiased selection:bg-primary selection:text-black">
+<div class="max-w-md mx-auto min-h-screen relative flex flex-col pb-24">
+<header class="px-6 pt-12 pb-6 flex items-center justify-between sticky top-0 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md z-20">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-800 shadow-sm">
+<span class="material-symbols-outlined text-gray-600 dark:text-gray-300">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold">Settings</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-800 shadow-sm text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</header>
+<div class="px-6 mb-8">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800 flex items-center gap-4 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -mr-10 -mt-10"></div>
+<div class="relative">
+<img alt="Profile Picture" class="w-20 h-20 rounded-2xl object-cover border-2 border-white dark:border-gray-700 shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh1nmIjU14YUc6OaV1qOiJmQ6tZrONQVXgMG2WMHhG4-jjl4Q0IdXdvL0QBI2hpN7CXblmJ8NQPELe7m7nlgLV7LAtAjPmEm7SXMF9TlIeUP3ONZCiXLRWZm266-KqH5zHM7AqKJLptXxYWHOE-mxHE4zRaHk8t-pe_5XvKCv32l5DNbQ6bxcF7ZTe6EKD9wNBJlrHRqO_ZNmyh3IK-Vc_jMrEO63IMWfwfbwPkncxU9VHKwyCSItx9He03ASAbIuqvA6PhLZ6luk"/>
+<button class="absolute -bottom-2 -right-2 bg-black dark:bg-primary text-white dark:text-black p-1.5 rounded-full border-2 border-white dark:border-gray-800">
+<span class="material-symbols-outlined text-sm font-bold block">edit</span>
+</button>
+</div>
+<div class="flex-1 z-10">
+<h2 class="text-xl font-bold text-gray-900 dark:text-white">Andrew John</h2>
+<p class="text-gray-500 dark:text-gray-400 text-sm mb-2">@andrewjohn</p>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-primary/30 text-gray-800 dark:text-white">
+                        Free Plan
+                    </span>
+</div>
+<button class="bg-primary text-black px-4 py-2 rounded-xl text-sm font-semibold shadow-sm hover:opacity-90 transition-opacity">
+                    Upgrade
+                </button>
+</div>
+</div>
+<div class="px-6 mb-6">
+<h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3 pl-2">General</h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-3xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 divide-y divide-gray-100 dark:divide-gray-800">
+<button class="w-full flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div class="text-left">
+<p class="font-semibold text-gray-900 dark:text-white">Personal Info</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Name, email, phone</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary/50 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div class="text-left">
+<p class="font-semibold text-gray-900 dark:text-white">Payment Methods</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Visa ending in 7281</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+</button>
+<div class="w-full flex items-center justify-between p-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+<div class="text-left">
+<p class="font-semibold text-gray-900 dark:text-white">Notifications</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Manage your alerts</p>
+</div>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-200 dark:border-gray-600 appearance-none cursor-pointer transition-all duration-300 ease-in-out" id="toggle-notif" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer" for="toggle-notif"></label>
+</div>
+</div>
+</div>
+</div>
+<div class="px-6 mb-6">
+<h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3 pl-2">Security</h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-3xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 divide-y divide-gray-100 dark:divide-gray-800">
+<button class="w-full flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div class="text-left">
+<p class="font-semibold text-gray-900 dark:text-white">Change Password</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+</button>
+<div class="w-full flex items-center justify-between p-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center text-teal-600 dark:text-teal-400">
+<span class="material-symbols-outlined">fingerprint</span>
+</div>
+<div class="text-left">
+<p class="font-semibold text-gray-900 dark:text-white">Biometric Login</p>
+</div>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-200 dark:border-gray-600 appearance-none cursor-pointer transition-all duration-300 ease-in-out" id="toggle-bio" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-200 dark:bg-gray-700 cursor-pointer" for="toggle-bio"></label>
+</div>
+</div>
+</div>
+</div>
+<div class="px-6 mb-8">
+<h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3 pl-2">Preferences</h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-3xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 divide-y divide-gray-100 dark:divide-gray-800">
+<button class="w-full flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined">dark_mode</span>
+</div>
+<div class="text-left">
+<p class="font-semibold text-gray-900 dark:text-white">Theme</p>
+</div>
+</div>
+<div class="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                        System Default
+                        <span class="material-symbols-outlined ml-1">chevron_right</span>
+</div>
+</button>
+</div>
+</div>
+<div class="px-6 pb-6">
+<button class="w-full py-4 rounded-3xl bg-surface-light dark:bg-surface-dark border border-gray-200 dark:border-gray-700 text-red-500 font-bold text-lg hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">logout</span>
+                Sign Out
+            </button>
+<p class="text-center text-xs text-gray-400 mt-6 mb-20">Version 2.4.0</p>
+</div>
+<div class="fixed bottom-6 left-6 right-6 z-50">
+<div class="bg-surface-light dark:bg-surface-dark bg-opacity-90 dark:bg-opacity-90 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-full px-2 py-2 shadow-xl flex justify-between items-center max-w-sm mx-auto">
+<button class="p-3 rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="sr-only">Home</span>
+</button>
+<button class="p-3 rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+<span class="material-symbols-outlined text-2xl">analytics</span>
+<span class="sr-only">Insights</span>
+</button>
+<button class="w-12 h-12 bg-black dark:bg-primary text-white dark:text-black rounded-full flex items-center justify-center shadow-lg transform -translate-y-4 border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-2xl">qr_code_scanner</span>
+</button>
+<button class="p-3 rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+<span class="material-symbols-outlined text-2xl">credit_card</span>
+<span class="sr-only">Cards</span>
+</button>
+<button class="p-3 rounded-full text-black dark:text-primary bg-gray-100 dark:bg-gray-800 transition">
+<span class="material-symbols-outlined text-2xl fill-current">settings</span>
+<span class="sr-only">Settings</span>
+</button>
+</div>
+</div>
+</div>
+
+</body></html>

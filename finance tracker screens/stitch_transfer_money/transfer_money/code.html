@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Transfer Money</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#D4F65E", // Lime Green
+              secondary: "#A5DDE6", // Pastel Blue
+              tertiary: "#FFD8C9", // Pale Peach
+              accent: "#FCEFB4", // Pale Yellow
+              "background-light": "#FDFDF9", // Creamy white
+              "background-dark": "#121212", // Deep black
+              "surface-light": "#F2F2F0", // Light gray/beige for inputs/buttons
+              "surface-dark": "#1E1E1E", // Dark gray for inputs/buttons
+            },
+            fontFamily: {
+              display: ['"Plus Jakarta Sans"', "sans-serif"],
+              body: ['"Plus Jakarta Sans"', "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "1rem",
+              '3xl': "1.5rem",
+              '4xl': "2rem",
+            },
+            boxShadow: {
+                'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+            }
+          },
+        },
+      };
+    </script>
+<style>.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-gray-100 dark:bg-black font-body text-gray-900 dark:text-gray-100 h-screen w-full flex justify-center items-center">
+<div class="w-full h-full max-w-md bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden relative flex flex-col justify-between">
+<div class="flex-1 flex flex-col p-6 pb-2">
+<div class="flex items-center justify-between mb-8">
+<button class="w-12 h-12 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<span class="material-icons-round text-gray-800 dark:text-white">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<h2 class="text-lg font-bold text-gray-900 dark:text-white leading-tight">Eleanor Pena</h2>
+<p class="text-sm text-gray-500 dark:text-gray-400">@eleanorpena</p>
+</div>
+<div class="relative">
+<img alt="Recipient Avatar" class="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-surface-dark shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgWF3XR6GjoyDKkT3svFkAm7wqwFpbdR5xjDI4CPHu4_Ngwx6q1vmIDCy2Y3qmAtFoX8nIWptVVyS_Xi8jxOJOj9hoRMeMRi0VHsbDCTkHNXrcFAmDzAshT5-LcOBPgpEmiGqzxAUr4HwQIkSmzQ3aY7b-fPGMHmo-RC6zQz1uVJp3GauBiLGK8GEy6bwe78YS2bh0P518O64VOyn5H-CifBOwFuStWS0iNtAdGN0U4B_ciMC0EnwBiycZZ5FVJrBwrNp0FRtj4nI"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center border border-white dark:border-surface-dark">
+<span class="text-[10px] font-bold text-blue-600">e</span>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex justify-between items-center mb-3 px-1">
+<span class="text-sm font-semibold text-gray-800 dark:text-gray-200">Transfer From</span>
+<button class="text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white transition-colors">See All &gt;</button>
+</div>
+<div class="bg-[#F4F4F1] dark:bg-surface-dark rounded-3xl p-4 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center text-teal-800 font-bold text-xs uppercase">
+                            US
+                        </div>
+<div>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">My Account</p>
+<p class="text-sm font-bold text-gray-900 dark:text-white tracking-wide">**** **** **** 7281</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-white dark:bg-gray-700 flex items-center justify-center shadow-sm">
+<span class="material-icons-round text-gray-400 text-sm">sync_alt</span>
+</button>
+</div>
+</div>
+<div class="flex-1 flex flex-col justify-center items-center mb-4">
+<div class="flex items-baseline text-gray-900 dark:text-white">
+<span class="text-4xl font-medium text-gray-400 mr-1">$</span>
+<span class="text-6xl font-bold tracking-tight">398.00</span>
+</div>
+</div>
+<div class="flex gap-4 mb-2">
+<button class="flex-1 bg-accent hover:bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-100 dark:hover:bg-yellow-800 text-gray-900 h-12 rounded-full flex items-center justify-center gap-2 text-sm font-semibold transition-colors">
+<span class="material-icons-round text-base">calendar_today</span>
+                    Schedule Payment
+                </button>
+<button class="flex-1 bg-tertiary hover:bg-orange-200 dark:bg-orange-900 dark:text-orange-100 dark:hover:bg-orange-800 text-gray-900 h-12 rounded-full flex items-center justify-center gap-2 text-sm font-semibold transition-colors">
+<span class="material-icons-round text-base">add</span>
+                    Add Note
+                </button>
+</div>
+</div>
+<div class="pb-8 pt-2 px-6">
+<div class="grid grid-cols-4 gap-4">
+<button class="h-16 w-16 mx-auto rounded-full bg-surface-light dark:bg-surface-dark text-xl font-semibold text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">1</button>
+<button class="h-16 w-16 mx-auto rounded-full bg-surface-light dark:bg-surface-dark text-xl font-semibold text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">2</button>
+<button class="h-16 w-16 mx-auto rounded-full bg-surface-light dark:bg-surface-dark text-xl font-semibold text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">3</button>
+<button class="h-16 w-16 mx-auto rounded-full border border-gray-200 dark:border-gray-700 bg-transparent flex items-center justify-center text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-icons-round text-xl">backspace</span>
+</button>
+<button class="h-16 w-16 mx-auto rounded-full bg-surface-light dark:bg-surface-dark text-xl font-semibold text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">4</button>
+<button class="h-16 w-16 mx-auto rounded-full bg-surface-light dark:bg-surface-dark text-xl font-semibold text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">5</button>
+<button class="h-16 w-16 mx-auto rounded-full bg-surface-light dark:bg-surface-dark text-xl font-semibold text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">6</button>
+<button class="h-16 w-16 mx-auto rounded-full bg-primary text-gray-900 font-bold text-lg hover:brightness-110 transition-colors">C</button>
+<button class="h-16 w-16 mx-auto rounded-full bg-surface-light dark:bg-surface-dark text-xl font-semibold text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">7</button>
+<button class="h-16 w-16 mx-auto rounded-full bg-surface-light dark:bg-surface-dark text-xl font-semibold text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">8</button>
+<button class="h-16 w-16 mx-auto rounded-full bg-surface-light dark:bg-surface-dark text-xl font-semibold text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">9</button>
+<div class="row-span-2 flex items-center justify-center">
+<button class="h-full w-16 rounded-[2rem] bg-secondary hover:bg-blue-200 text-gray-900 flex items-center justify-center transition-colors">
+<span class="material-icons-round text-2xl">arrow_forward</span>
+</button>
+</div>
+<button class="h-16 w-16 mx-auto rounded-full bg-accent dark:bg-yellow-800 text-xl font-semibold text-gray-900 dark:text-yellow-100 hover:brightness-95 transition-colors">,</button>
+<button class="h-16 w-16 mx-auto rounded-full bg-surface-light dark:bg-surface-dark text-xl font-semibold text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">0</button>
+<button class="h-16 w-16 mx-auto rounded-full bg-surface-light dark:bg-surface-dark text-xl font-semibold text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">.</button>
+</div>
+</div>
+</div>
+
+</body></html>

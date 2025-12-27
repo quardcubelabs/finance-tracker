@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Finance Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#D4F94C", // The bright lime green from the card
+                        "primary-dark": "#bce628",
+                        "accent-orange": "#FFD99D", // The orange for "Receive" button
+                        "accent-blue": "#C4E8F3", // The blue for "Transfer" button
+                        "accent-blue-dark": "#363636", 
+                        "background-light": "#F2F2EC", // Light beige/off-white background
+                        "background-dark": "#121212", // Dark mode background
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1E1E1E",
+                        "text-light": "#1A1A1A",
+                        "text-dark": "#FFFFFF",
+                        "subtext-light": "#6B7280",
+                        "subtext-dark": "#9CA3AF",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        'xl': '1.5rem',
+                        '2xl': '2rem',
+                        '3xl': '2.5rem',
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'nav': '0 -4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        };
+    </script>
+<style>.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-200 antialiased min-h-screen pb-24">
+<div class="h-12 w-full"></div>
+<header class="px-6 py-2 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img alt="User Profile" class="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-gray-700 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3kiE6NvfL52f4i8VbNi1IHCAFDbfY8cT_wGBvbByJQKQFcmy95rRy6vNJp7cIy7-75usxfC2c5dnqI1w28sAu-FCrgR8N_1RznrGDYo0kyusKiBnbXh5K_2NqyKDHfwbG9iqo_bJ2pmlecPKLftXdqeMooPPGT4R13tTnNGea1ic1r1YHn6N_qheH8cfuLTYjNPh9SDFo3EaRHDBagcztAu6hKWjr7IfjVVQRG5NltwvafD4vwnm1u4YhPzELz0NEFZvkHJVbU-g"/>
+<div>
+<p class="text-sm text-subtext-light dark:text-subtext-dark font-medium">Welcome back</p>
+<h1 class="text-lg font-bold text-text-light dark:text-text-dark">Andrew John</h1>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="w-10 h-10 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<span class="material-icons-round text-gray-600 dark:text-gray-300 text-xl">notifications</span>
+<span class="absolute top-3 right-16 w-2 h-2 bg-primary rounded-full border border-white dark:border-surface-dark"></span>
+</button>
+<button class="w-10 h-10 rounded-full bg-white dark:bg-surface-dark flex items-center justify-center shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<span class="material-icons-round text-gray-600 dark:text-gray-300 text-xl">grid_view</span>
+</button>
+</div>
+</header>
+<main class="px-5 mt-6 space-y-6">
+<div class="bg-primary w-full rounded-3xl p-6 relative overflow-hidden shadow-soft">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -mr-10 -mt-10 blur-xl"></div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="text-black/60 font-medium text-sm mb-1">Balance</p>
+<div class="flex items-baseline gap-2">
+<h2 class="text-4xl font-bold text-black">$15,398.87</h2>
+<div class="bg-white/30 backdrop-blur-sm px-2 py-0.5 rounded-full flex items-center gap-1 cursor-pointer">
+<span class="text-xs font-bold text-black">USD</span>
+<span class="material-icons-round text-black text-xs">expand_more</span>
+</div>
+</div>
+</div>
+<div class="font-bold text-black/80 italic text-xl">VISA</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-black/60 text-sm tracking-wider mb-2">**** **** **** 7281</p>
+<p class="text-black font-semibold">Andrew John</p>
+</div>
+<button class="bg-black text-white px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium hover:bg-gray-900 transition-colors">
+<span class="material-icons-round text-base">add</span>
+                    Set Budget
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="bg-accent-blue dark:bg-cyan-900/40 py-4 px-6 rounded-2xl flex items-center justify-center gap-3 transition-transform active:scale-95 group">
+<div class="w-8 h-8 rounded-full bg-black/10 dark:bg-white/10 flex items-center justify-center">
+<span class="material-icons-round text-black dark:text-white group-hover:-translate-y-0.5 transition-transform">arrow_upward</span>
+</div>
+<span class="font-semibold text-black dark:text-white">Transfer</span>
+</button>
+<button class="bg-accent-orange dark:bg-orange-900/40 py-4 px-6 rounded-2xl flex items-center justify-center gap-3 transition-transform active:scale-95 group">
+<div class="w-8 h-8 rounded-full bg-black/10 dark:bg-white/10 flex items-center justify-center">
+<span class="material-icons-round text-black dark:text-white group-hover:translate-y-0.5 transition-transform">arrow_downward</span>
+</div>
+<span class="font-semibold text-black dark:text-white">Receive</span>
+</button>
+</div>
+<div>
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-bold text-lg text-text-light dark:text-text-dark">Quick Send</h3>
+<button class="text-sm text-subtext-light dark:text-subtext-dark font-medium hover:text-text-light dark:hover:text-text-dark">See All &gt;</button>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+<div class="flex flex-col items-center gap-2 min-w-[70px]">
+<button class="w-16 h-16 rounded-full bg-white dark:bg-surface-dark border border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+<span class="material-icons-round text-blue-400 text-2xl">add</span>
+</button>
+</div>
+<div class="flex flex-col items-center gap-2 min-w-[70px] cursor-pointer group">
+<div class="relative">
+<img alt="Courtney" class="w-16 h-16 rounded-full object-cover border-2 border-transparent group-hover:border-primary transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIpYwCcnAMl7vznh4PI6JHtc4pYoL64LKPk8sHJT9ixUZclG0p5jmbzCmz1WEaKPHT_NTlgmCqz73EXyN-2LvJOsS_90FQuQ_2H_ng_-yjBidljSSjATltMeOrb4C3ZfHPhboP1i1Kz7KCTjj9IMJ-ENe3-Cj5XyQExbhZHjcZudLZZaPOeXu8WNwf72qTVHhfZBXDFNyJkfcgdAKE9YXUNy_re_g6kPY-rwxVWNqPjMT5RL96JBpOUiv9v94UYcd6RHsR9gu7xEs"/>
+</div>
+<span class="text-xs font-medium text-subtext-light dark:text-subtext-dark">Courtney</span>
+</div>
+<div class="flex flex-col items-center gap-2 min-w-[70px] cursor-pointer group">
+<div class="relative">
+<img alt="Darlene" class="w-16 h-16 rounded-full object-cover border-2 border-transparent group-hover:border-primary transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwExC3TV6BVi-bTmrcZhfzYGwFUmmelS57FpoNw__6oYYqn4f-w6I-hjS7fb6IrashF-ycuux29xbdQ97cr49iHy8jWPsm6XB9LX0RSExLEt544Fgz1WQtgAyha-FAD55RoN4lE2RniZXbXgMNqbmfbsHrNOjIdYDIfSf6fUEZfo4xm3pNIXbksokoqSzZ5vgb6pAzPaFiLu__cweXM8yAGRt2VOPE0BKKl_U1KONzEOM8Gd2xebaKysrUoprqGfVAy9pmuud1-hA"/>
+</div>
+<span class="text-xs font-medium text-subtext-light dark:text-subtext-dark">Darlene</span>
+</div>
+<div class="flex flex-col items-center gap-2 min-w-[70px] cursor-pointer group">
+<div class="relative">
+<img alt="Philip" class="w-16 h-16 rounded-full object-cover border-2 border-transparent group-hover:border-primary transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDANbJUJ6_w9WeS7bqmufmWJFqEyLeZHfRTG20U-Mdyi_vLkNsDnOG2hf03XrsWkMQykJsnGnEa6aZHwgRtuqZiUZD9y7S8Bt-PdZWtXr-62jZbfFL43k46wDwxxujRprmavpMklSw181ncfDVy2pKORmFrkMaOFgQdh-cmBqUo3HSFA2YdeTJSKAaOyK5i4j79_ywzPGbC3S-9xteRlMSpNUyChMpzi2C6rYFuSMsPdTLMwZ0EtPXKdvArvnDukSIshnXRjOv5oSo"/>
+</div>
+<span class="text-xs font-medium text-subtext-light dark:text-subtext-dark">Philip</span>
+</div>
+<div class="flex flex-col items-center gap-2 min-w-[70px] cursor-pointer group">
+<div class="relative">
+<img alt="Greg" class="w-16 h-16 rounded-full object-cover border-2 border-transparent group-hover:border-primary transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWdiYYG-zP_abBhg0KFFYvZnlEUEY4968JZACr4r67JJSVW8XbpvIzdhAwSHL5f9hUdbJ-l8R-hR7pawvWzd2LrQhz48a1t30Y5zcsI7MhZuYSqBsVMjqGCtaRTACoyKYr00FIG80l3Ey0o9cGf7s8tL8SQj3LKpVJP4tt8m6hjWvojjONoonNkF0NiQxTpm1oOO1q1sgfPxNSfQG4R5xKyIRJ0UyvD8xGcLvkIvM8HZLN_ubSOqafddFf8P6x65DOUgvuBm4BQc8"/>
+</div>
+<span class="text-xs font-medium text-subtext-light dark:text-subtext-dark">Greg</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-black dark:bg-surface-dark text-white p-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all active:scale-[0.98]">
+<span class="material-icons-round text-primary animate-pulse">auto_awesome</span>
+<span class="font-semibold">AI Assistant</span>
+</button>
+<div class="pb-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-bold text-lg text-text-light dark:text-text-dark">Recent Transactions</h3>
+<button class="bg-accent-blue dark:bg-cyan-900/40 px-3 py-1 rounded-full text-xs font-bold text-black dark:text-white flex items-center gap-1">
+                    Week <span class="material-icons-round text-sm">expand_more</span>
+</button>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-3xl p-4 space-y-4">
+<div class="flex items-center justify-between p-2">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Jacob Jones" class="w-12 h-12 rounded-full object-cover bg-gray-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3_fuhcAo4axYUONR7VnY_Gmw96s0BtMH9ciEigX2u8pARjvj0BzHN_hJ7meJaCZ2PLO6rHjAHPNEkwaGWQn1jwUtgC-Kpvyyrm2s9ZAxgNUcxziXC8QZhER6FufHs7v76yV7lXiVnrcVt7-9d1OLN4UJNO9tiZuwxinN6mxmuqV9qpRCP78J2pnUY8AEm8oUEv1wUhowX419IfeR_-avqlumlTdxdbdrOawG-sbWLjU59Cxlsp7YFJ9A-2vdl-TO-53tRk-dm89w"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-white dark:bg-surface-dark rounded-full flex items-center justify-center">
+<span class="material-icons-round text-xs text-blue-500">send</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-text-light dark:text-text-dark">Jacob Jones</h4>
+<p class="text-xs text-subtext-light dark:text-subtext-dark">23 January • 10:00 AM</p>
+</div>
+</div>
+<span class="font-bold text-green-600 dark:text-green-400">+$40.02</span>
+</div>
+<div class="flex items-center justify-between p-2 opacity-50">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
+<div class="space-y-2">
+<div class="h-3 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+<div class="h-2 w-16 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+</div>
+</div>
+<div class="h-4 w-12 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
+</div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-surface-dark/90 backdrop-blur-md shadow-nav border-t border-gray-100 dark:border-gray-800 pb-6 pt-2 px-6 rounded-t-3xl z-50">
+<ul class="flex justify-between items-center">
+<li class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="material-icons-round text-black dark:text-white text-2xl group-hover:scale-110 transition-transform">home</span>
+<span class="text-[10px] font-medium text-black dark:text-white">Home</span>
+</li>
+<li class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="material-icons-round text-subtext-light dark:text-subtext-dark text-2xl group-hover:text-black dark:group-hover:text-white transition-colors">insert_chart_outlined</span>
+<span class="text-[10px] font-medium text-subtext-light dark:text-subtext-dark group-hover:text-black dark:group-hover:text-white transition-colors">Insights</span>
+</li>
+<li class="relative -top-8">
+<button class="w-16 h-16 rounded-full bg-accent-blue dark:bg-cyan-600 shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center justify-center transform transition-transform hover:scale-110 active:scale-95 border-4 border-white dark:border-background-dark">
+<span class="material-icons-round text-black dark:text-white text-3xl">qr_code_scanner</span>
+</button>
+</li>
+<li class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="material-icons-round text-subtext-light dark:text-subtext-dark text-2xl group-hover:text-black dark:group-hover:text-white transition-colors">credit_card</span>
+<span class="text-[10px] font-medium text-subtext-light dark:text-subtext-dark group-hover:text-black dark:group-hover:text-white transition-colors">Cards</span>
+</li>
+<li class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="material-icons-round text-subtext-light dark:text-subtext-dark text-2xl group-hover:text-black dark:group-hover:text-white transition-colors">settings</span>
+<span class="text-[10px] font-medium text-subtext-light dark:text-subtext-dark group-hover:text-black dark:group-hover:text-white transition-colors">Settings</span>
+</li>
+</ul>
+</nav>
+
+</body></html>

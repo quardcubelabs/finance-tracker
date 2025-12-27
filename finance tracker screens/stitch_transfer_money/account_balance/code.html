@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Account Balance Screen</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#D9FD57", // The bright lime green from the screenshot
+                        "primary-dark": "#bada2f",
+                        "secondary-bg": "#F5F5F0", // Light beige background
+                        "secondary-bg-dark": "#1C1C1E", // Dark mode secondary background
+                        "background-light": "#FAFAF8", // Main background light
+                        "background-dark": "#000000", // Main background dark
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#1C1C1E",
+                        "text-light": "#111111",
+                        "text-dark": "#FFFFFF",
+                        "accent-blue": "#BEE7F5", // Light blue from 'Transfer' button
+                        "accent-orange": "#FADFB5", // Light orange from 'Receive' button
+                        "dark-button": "#0A0A0A", // The black AI button
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        'xl': "1.5rem",
+                        '2xl': "2rem",
+                        '3xl': "2.5rem",
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans antialiased min-h-screen flex justify-center items-center p-4 sm:p-8">
+<div class="w-full max-w-[393px] bg-background-light dark:bg-background-dark h-[852px] rounded-[3rem] overflow-hidden shadow-2xl relative border-8 border-gray-900 dark:border-gray-800 flex flex-col">
+<div class="h-12 w-full flex justify-between items-center px-6 pt-2 select-none">
+<span class="text-sm font-semibold">9:41</span>
+<div class="flex gap-2 text-sm">
+<span class="material-icons-outlined text-sm">signal_cellular_alt</span>
+<span class="material-icons-outlined text-sm">wifi</span>
+<span class="material-icons-outlined text-sm">battery_full</span>
+</div>
+</div>
+<div class="px-6 py-2 flex justify-between items-center mb-4">
+<div class="flex items-center gap-3">
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-gray-700 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXXiOFbqpCAgybxRODh49sG26K-rQPyyHWLnEVpMFCmuy1soZfMTRo_Ch-VabOnxk01NDJdpq-BXWg_186yroP-FQvg4shK0_QtVoPPMrsOqRM8lVVKb0bbPHxCjxQLMxXfkyXLh0X1rTwiGmjM1nyAXeabu6BzyZjwCtGKfhiHbOWLcOgt5_Dp8Pcuu-G8sYFg8er57bihXzMwESuheHaYJB9U0bggIqSk1oUNhePbYZOd0Q9Ianx3tM2gjt977ncE7MmLIwd8P0"/>
+<div>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Welcome back</p>
+<h2 class="text-sm font-bold text-gray-900 dark:text-white">Andrew John</h2>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-soft border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+<span class="material-icons-outlined text-gray-600 dark:text-gray-300">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-soft border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+<span class="material-icons-outlined text-gray-600 dark:text-gray-300">grid_view</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-6 pb-24 scrollbar-hide">
+<div class="bg-primary w-full rounded-3xl p-6 relative overflow-hidden shadow-soft mb-6">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-semibold text-gray-800 uppercase tracking-wide">Total Balance</span>
+<span class="font-bold text-xl italic text-gray-900">VISA</span>
+</div>
+<div class="flex items-baseline gap-2 mb-6">
+<h1 class="text-3xl font-bold text-gray-900">$15,398.87</h1>
+<div class="bg-white/30 backdrop-blur-md px-2 py-0.5 rounded-lg flex items-center gap-1 cursor-pointer">
+<span class="text-[10px] font-bold text-gray-800">USD</span>
+<span class="material-icons-outlined text-[10px] text-gray-800">expand_more</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-sm font-mono text-gray-800 tracking-wider mb-1">**** **** **** 7281</p>
+<p class="text-xs font-medium text-gray-700">Andrew John</p>
+</div>
+<button class="bg-black text-white px-4 py-2 rounded-full text-xs font-medium flex items-center gap-1 hover:bg-gray-800 transition shadow-lg">
+<span class="material-icons-outlined text-sm">add</span>
+                        Set Budget
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mb-8">
+<button class="bg-accent-blue dark:bg-cyan-900/40 rounded-2xl h-14 flex items-center justify-center gap-2 hover:opacity-90 transition group">
+<div class="w-8 h-8 bg-white/40 dark:bg-white/10 rounded-full flex items-center justify-center group-hover:scale-110 transition">
+<span class="material-icons-outlined text-gray-800 dark:text-white text-sm transform -rotate-45">arrow_upward</span>
+</div>
+<span class="text-sm font-semibold text-gray-900 dark:text-white">Transfer</span>
+</button>
+<button class="bg-accent-orange dark:bg-orange-900/40 rounded-2xl h-14 flex items-center justify-center gap-2 hover:opacity-90 transition group">
+<div class="w-8 h-8 bg-white/40 dark:bg-white/10 rounded-full flex items-center justify-center group-hover:scale-110 transition">
+<span class="material-icons-outlined text-gray-800 dark:text-white text-sm transform rotate-45">arrow_downward</span>
+</div>
+<span class="text-sm font-semibold text-gray-900 dark:text-white">Receive</span>
+</button>
+</div>
+<div class="mb-8">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-bold text-gray-900 dark:text-white">Quick Send</h3>
+<button class="text-xs text-gray-500 dark:text-gray-400 font-medium hover:text-primary transition">See All &gt;</button>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-3xl p-4 shadow-soft flex justify-between items-center">
+<button class="flex flex-col items-center gap-2 group">
+<div class="w-12 h-12 rounded-full bg-blue-50 dark:bg-gray-800 flex items-center justify-center border border-dashed border-blue-300 dark:border-gray-600 group-hover:border-primary transition">
+<span class="material-icons-outlined text-blue-400 dark:text-gray-400">add</span>
+</div>
+<span class="text-[10px] text-gray-400 dark:text-gray-500">Add New</span>
+</button>
+<div class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition">
+<img alt="Courtney" class="w-12 h-12 rounded-full object-cover border border-gray-100 dark:border-gray-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9hAp-6_PkfbAFVHt0o0sIuJNbEP8ooJvawLoofoX6rtuUg1R8KoLw0EheBVBZrNkagwIBYNxUciOAmN7qIb5eDFjTWIIvQCLm2j6yR26osy6BnHsAaRJ1Kl8u3PA03xs4PR9qfWmNn4v68yNy6w4BJdFfUpQIfkdKDYTCuJnY2NtPlIC05FOicDT1UBlPZ5ttnblEPBncBRyp1sZ1-8pB1Ky00Do8fv8UET3snxBLVQOZjvOXrycrwaXNm2h4Gqt9Jpr9-W6Xhj8"/>
+<span class="text-[10px] font-medium text-gray-600 dark:text-gray-300">Courtney</span>
+</div>
+<div class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition">
+<img alt="Darlene" class="w-12 h-12 rounded-full object-cover border border-gray-100 dark:border-gray-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWFh9FD2z1uyEWEwp1rk5KLO3xG4-dgIhyo0f_H_Z_A7_Ov0klIGE-sC8fqHWih0GcMJ3vQVs7of6yPp9lsGSE1gsdvv2qhejFfpI2hM4jLgZb9WtKlHASGZrW2IhlTDPObr466EyNtBULjR2QyASqXuSUpwPYhoQF_EObQmt6bzUx8XD702rx7oI6NAzHBo2KWbOQyYsez9vSU7LS5x2VW76tt_Zji8JveeySssr1ABC8rwbX5M4dZRHMKUnbwq4yA69FY16tWIY"/>
+<span class="text-[10px] font-medium text-gray-600 dark:text-gray-300">Darlene</span>
+</div>
+<div class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition">
+<img alt="Philip" class="w-12 h-12 rounded-full object-cover border border-gray-100 dark:border-gray-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNeWMPbX6nX4mLwGAHaSlC7iyCdaGsr9HOtPorqF13KJqiexr4aQURwE1tw2UTeE3fijIGuiV0ZYwe-Pd6-ckTvZptdIoJWmhtTudSv5Q8xm-KYCgIXrcPmcS5thESbNyupa8UqX2-bv-KuTc1ypHudGnpdtkZnwgJPPJSp4v626pLK8g5TEhf3dt6XFvFe0Q_OPQCKSKyRAwx4JsBYdD8HODqtxW1rvUkGJWyCYeMHP-zhvKMIshebV5JUmDPbmAOGiXPg1vbF58"/>
+<span class="text-[10px] font-medium text-gray-600 dark:text-gray-300">Philip</span>
+</div>
+<div class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition">
+<img alt="Greg" class="w-12 h-12 rounded-full object-cover border border-gray-100 dark:border-gray-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPWo7o4eV9q0PjVxwxQEfTyPqcB6lybDRH-aRzh7-5MJIci8ESa3fbIsGPDyVYKapta3mUxmDHr6N8q-oR7f2fkIkJnvhhSIZe-XYA9zMF2hrWES0iA_YSvoWO9KRIY33_uUzwDfjxghMfHilAh9PjrUzXSDA2dYu8zalFFh3Jb0Uwo5vUN7Zn0VM6VhRC5SMyRzr66TXQiWYAPhCq_xc4_ToFm-tuhBxmHCM0Kz8szsJX4v5knhhaYJeeLkgsKBnu3osk-TDFzbk"/>
+<span class="text-[10px] font-medium text-gray-600 dark:text-gray-300">Greg</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-dark-button dark:bg-white rounded-2xl h-14 flex items-center justify-center gap-2 mb-8 shadow-lg hover:scale-[1.02] transition-transform duration-200">
+<span class="material-icons-outlined text-white dark:text-black text-lg">auto_awesome</span>
+<span class="text-sm font-bold text-white dark:text-black">AI Assistant</span>
+</button>
+<div class="pb-4">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-bold text-gray-900 dark:text-white">Recent Transactions</h3>
+<div class="flex items-center gap-1 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+<span class="text-xs font-medium text-gray-600 dark:text-gray-300">Week</span>
+<span class="material-icons-outlined text-xs text-gray-500">expand_more</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="bg-white dark:bg-card-dark p-4 rounded-3xl shadow-soft flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Jacob Jones" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFKCrapwZJvMB19tDKiXx4FqlWwOR7v2u0f8G18OvvS9BvqI7ArKYic_9bzKLsAeec8LozzA6BjHHYGDxIBtBiYbfA9u8mSIJDCUX8_8qGG8Hew7YMmYdg-IcGbcOwiLAfCDlMJDB0ECsJfjeVq5sxaKOqi_CV0-3Oc9x3y457ylyA7HfXDL7BvR-_kUvR_VLU9UG0C9ESDeZ0IStrFeLOEDPuBxVoxv2ulTsBxzmsjlj9SfwGorlHsqf6Q8Q4qqmIqBollh8GqHo"/>
+<div class="absolute -bottom-1 -right-1 bg-white dark:bg-gray-800 rounded-full p-0.5">
+<div class="bg-green-100 dark:bg-green-900 rounded-full p-1">
+<span class="material-icons-outlined text-[10px] text-green-600 dark:text-green-400 block">call_received</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-sm text-gray-900 dark:text-white">Jacob Jones</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400">23 January • 10:42 AM</p>
+</div>
+</div>
+<span class="font-bold text-sm text-gray-900 dark:text-white">+$40.02</span>
+</div>
+<div class="bg-white dark:bg-card-dark p-4 rounded-3xl shadow-soft flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center text-purple-600 dark:text-purple-400 font-bold text-lg">
+                                N
+                            </div>
+<div>
+<h4 class="font-bold text-sm text-gray-900 dark:text-white">Netflix Sub</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400">21 January • 09:00 AM</p>
+</div>
+</div>
+<span class="font-bold text-sm text-gray-900 dark:text-white">-$14.99</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-[calc(100%-3rem)] bg-white dark:bg-card-dark rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-2 flex justify-between items-center z-20">
+<button class="flex-1 flex flex-col items-center justify-center py-2 gap-1 group">
+<span class="material-icons-outlined text-gray-900 dark:text-white group-hover:text-primary transition">home</span>
+<span class="text-[10px] font-medium text-gray-900 dark:text-white">Home</span>
+</button>
+<button class="flex-1 flex flex-col items-center justify-center py-2 gap-1 group text-gray-400 dark:text-gray-500">
+<span class="material-icons-outlined group-hover:text-primary transition">bar_chart</span>
+<span class="text-[10px] font-medium">Insights</span>
+</button>
+<div class="-mt-8">
+<button class="w-14 h-14 bg-accent-blue rounded-2xl flex items-center justify-center shadow-lg transform rotate-45 hover:scale-105 transition border-4 border-white dark:border-gray-900 group">
+<span class="material-icons-outlined text-gray-800 text-xl transform -rotate-45 group-hover:rotate-[315deg] transition-transform duration-500">qr_code_scanner</span>
+</button>
+</div>
+<button class="flex-1 flex flex-col items-center justify-center py-2 gap-1 group text-gray-400 dark:text-gray-500">
+<span class="material-icons-outlined group-hover:text-primary transition">credit_card</span>
+<span class="text-[10px] font-medium">Cards</span>
+</button>
+<button class="flex-1 flex flex-col items-center justify-center py-2 gap-1 group text-gray-400 dark:text-gray-500">
+<span class="material-icons-outlined group-hover:text-primary transition">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent pointer-events-none z-10"></div>
+</div>
+
+</body></html>

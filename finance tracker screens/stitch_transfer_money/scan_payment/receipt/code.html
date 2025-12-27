@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Scan Payment/Receipt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#D9FD57", // The vibrant lime green from the screenshot
+                        secondary: "#FFDEBC", // The soft orange/peach accent
+                        "background-light": "#F8F8F6", // Off-white background
+                        "background-dark": "#121212", // Dark mode background
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1E1E1E",
+                        "text-light": "#1A1A1A",
+                        "text-dark": "#F3F3F3",
+                        "gray-soft": "#F0F0F0",
+                    },
+                    fontFamily: {
+                        display: ["'Plus Jakarta Sans'", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1.5rem", // Consistent rounded look
+                        'xl': '1rem',
+                        '2xl': '1.5rem',
+                        '3xl': '2rem',
+                    },
+                },
+            },
+        };
+    </script>
+<style>@keyframes scan-line {
+            0% { top: 10%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 90%; opacity: 0; }
+        }
+        .scan-overlay-line {
+            position: absolute;
+            left: 5%;
+            width: 90%;
+            height: 2px;
+            background: #D9FD57;
+            box-shadow: 0 0 15px #D9FD57, 0 0 30px #D9FD57;
+            animation: scan-line 2.5s infinite linear;
+            z-index: 20;
+        }
+        .corner-bracket {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #D9FD57;
+            border-radius: 4px;
+            z-index: 10;
+        }
+        .top-left { top: 0; left: 0; border-right: none; border-bottom: none; border-top-left-radius: 24px; }
+        .top-right { top: 0; right: 0; border-left: none; border-bottom: none; border-top-right-radius: 24px; }
+        .bottom-left { bottom: 0; left: 0; border-right: none; border-top: none; border-bottom-left-radius: 24px; }
+        .bottom-right { bottom: 0; right: 0; border-left: none; border-top: none; border-bottom-right-radius: 24px; }
+        .camera-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.6) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-gray-100 dark:bg-gray-900 font-display flex items-center justify-center min-h-screen p-4">
+<div class="w-full max-w-[400px] h-[850px] bg-background-light dark:bg-background-dark rounded-[3rem] shadow-2xl overflow-hidden relative flex flex-col border-[8px] border-white dark:border-gray-800">
+<div class="px-6 pt-5 pb-2 flex justify-between items-center text-text-light dark:text-text-dark z-20 absolute top-0 w-full bg-gradient-to-b from-black/50 to-transparent">
+<span class="text-sm font-semibold text-white">9:41</span>
+<div class="flex gap-2 text-white">
+<span class="material-icons-round text-sm">signal_cellular_alt</span>
+<span class="material-icons-round text-sm">wifi</span>
+<span class="material-icons-round text-sm transform rotate-90">battery_full</span>
+</div>
+</div>
+<div class="absolute top-14 left-0 w-full px-6 flex justify-between items-center z-20">
+<button class="w-10 h-10 bg-surface-light/20 backdrop-blur-md rounded-full flex items-center justify-center text-white dark:text-white shadow-lg hover:bg-surface-light/30 transition">
+<span class="material-icons-round">arrow_back</span>
+</button>
+<h1 class="text-lg font-semibold text-white tracking-wide">Scan &amp; Pay</h1>
+<button class="w-10 h-10 bg-surface-light/20 backdrop-blur-md rounded-full flex items-center justify-center text-white dark:text-white shadow-lg hover:bg-surface-light/30 transition relative">
+<span class="material-icons-round">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+</div>
+<div class="flex-1 relative bg-black w-full h-full overflow-hidden">
+<img alt="Camera view of a receipt on a table" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzaabEPUOccrEKx2Y4IFceflKZsuOfhtABXkd6J-AEnDCZLLtkgr8MKCt18Ee9CogvYJEEzBmr7hqP3jvdGS3zST18S2dbMHzkvfIyffiaxvvndFWlKomDPRKe8mmHGJFjD4QCNy2_qsdSSpw9MMuhR9M4HETNchT66LbjFgln43EwKAPQqfynVIJiuiAXNPK0Jw_ZPhKPa3IiClEvLB4-ndYja2ekyYweVSMQB3obg7idE83repO0zpGA9-K3qXvc76TB45RX1BI"/>
+<div class="absolute inset-0 camera-overlay"></div>
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[60%] w-[280px] h-[280px]">
+<div class="corner-bracket top-left"></div>
+<div class="corner-bracket top-right"></div>
+<div class="corner-bracket bottom-left"></div>
+<div class="corner-bracket bottom-right"></div>
+<div class="scan-overlay-line"></div>
+<div class="absolute -bottom-12 w-full text-center">
+<p class="text-white/90 text-sm font-medium bg-black/30 backdrop-blur-sm py-1 px-3 rounded-full inline-block">Align QR code or receipt here</p>
+</div>
+</div>
+<div class="absolute bottom-40 w-full px-12 flex justify-between items-center z-20">
+<div class="flex flex-col items-center gap-2">
+<button class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition">
+<span class="material-icons-round">flash_on</span>
+</button>
+<span class="text-xs text-white/80">Flash</span>
+</div>
+<button class="w-20 h-20 rounded-full border-4 border-white flex items-center justify-center bg-transparent relative group">
+<div class="w-16 h-16 bg-primary rounded-full transition-all duration-200 group-active:scale-90"></div>
+</button>
+<div class="flex flex-col items-center gap-2">
+<button class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition overflow-hidden">
+<img alt="Gallery thumbnail" class="w-full h-full object-cover opacity-80 hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATshxWBaHhm_jLBJ65TJcSq76MeOU_XclLXUC6sY0P8L1MyGVjUEEGCx5b7JrBupvGSuLly9gOVoIWNvIvVvZB_vNlkd2pd5ZJKDNpy9Un_D__iGUcgGVfXPUWPCBT3m8z1LApch8BNPmfld7H1uw_68LkC-4w4i-azLHqAakZ-vrP-BjEm_dXnlV01hwcYaehUkEM1pZkxljt5dvrvKwdSZdCCd0E1Znbj3vpl0KOpFSRaBPfjTVcHpmAbKgKt8xlzNg9WJfP5AA"/>
+</button>
+<span class="text-xs text-white/80">Gallery</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-t-3xl p-6 pb-8 -mt-6 relative z-30 shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+<div class="w-12 h-1.5 bg-gray-300 dark:bg-gray-600 rounded-full mx-auto mb-6"></div>
+<div class="flex justify-between items-center mb-6 bg-gray-100 dark:bg-gray-800 p-1.5 rounded-2xl">
+<button class="flex-1 py-2.5 rounded-xl text-sm font-semibold bg-white dark:bg-gray-700 text-text-light dark:text-text-dark shadow-sm transition-all">
+                    Scan QR
+                </button>
+<button class="flex-1 py-2.5 rounded-xl text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-text-light dark:hover:text-text-dark transition-all">
+                    Upload Bill
+                </button>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="text-sm font-semibold text-text-light dark:text-text-dark">Recent Scans</h3>
+<button class="text-xs text-gray-500 dark:text-gray-400 hover:text-primary transition">See All</button>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+<div class="min-w-[80px] flex flex-col items-center gap-2">
+<div class="w-14 h-14 rounded-full bg-secondary flex items-center justify-center text-gray-800 shadow-sm border-2 border-white dark:border-gray-700">
+<span class="material-icons-round text-2xl">receipt_long</span>
+</div>
+<span class="text-xs font-medium text-text-light dark:text-text-dark truncate w-full text-center">Walmart</span>
+</div>
+<div class="min-w-[80px] flex flex-col items-center gap-2">
+<div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shadow-sm border-2 border-white dark:border-gray-700">
+<span class="material-icons-round text-2xl">qr_code_2</span>
+</div>
+<span class="text-xs font-medium text-text-light dark:text-text-dark truncate w-full text-center">Starbucks</span>
+</div>
+<div class="min-w-[80px] flex flex-col items-center gap-2">
+<div class="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 shadow-sm border-2 border-white dark:border-gray-700">
+<span class="material-icons-round text-2xl">person</span>
+</div>
+<span class="text-xs font-medium text-text-light dark:text-text-dark truncate w-full text-center">Mike</span>
+</div>
+<div class="min-w-[80px] flex flex-col items-center gap-2">
+<div class="w-14 h-14 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-400 shadow-sm border-2 border-white dark:border-gray-700 border-dashed">
+<span class="material-icons-round text-2xl">add</span>
+</div>
+<span class="text-xs font-medium text-text-light dark:text-text-dark truncate w-full text-center">New</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-[90%] h-[72px] bg-surface-light dark:bg-surface-dark rounded-full shadow-xl flex items-center justify-between px-2 z-40 border border-gray-100 dark:border-gray-800">
+<button class="flex flex-col items-center justify-center w-14 h-full text-gray-400 hover:text-text-light dark:hover:text-text-dark transition">
+<span class="material-icons-round text-2xl">home</span>
+<span class="text-[10px] mt-0.5 font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center w-14 h-full text-gray-400 hover:text-text-light dark:hover:text-text-dark transition">
+<span class="material-icons-round text-2xl">insights</span>
+<span class="text-[10px] mt-0.5 font-medium">Insights</span>
+</button>
+<div class="relative -top-5">
+<button class="w-14 h-14 bg-black dark:bg-primary rounded-[20px] flex items-center justify-center shadow-lg shadow-black/20 transform hover:scale-105 transition duration-200">
+<span class="material-icons-round text-2xl text-white dark:text-black">qr_code_scanner</span>
+</button>
+</div>
+<button class="flex flex-col items-center justify-center w-14 h-full text-gray-400 hover:text-text-light dark:hover:text-text-dark transition">
+<span class="material-icons-round text-2xl">credit_card</span>
+<span class="text-[10px] mt-0.5 font-medium">Cards</span>
+</button>
+<button class="flex flex-col items-center justify-center w-14 h-full text-gray-400 hover:text-text-light dark:hover:text-text-dark transition">
+<span class="material-icons-round text-2xl">settings</span>
+<span class="text-[10px] mt-0.5 font-medium">Settings</span>
+</button>
+</div>
+</div>
+
+</body></html>
