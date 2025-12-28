@@ -7,7 +7,7 @@
     "icon": "./assets/images/icon.png",
     "scheme": "finance-tracker-app",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": false,
+    "newArchEnabled": true,
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
@@ -15,31 +15,22 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.financetracker.app",
-      "infoPlist": {
-        "UIBackgroundModes": [
-          "audio"
-        ],
-        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to access your microphone"
-      }
+      "bundleIdentifier": "com.financetracker.app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.financetracker.app",
-      "permissions": [
-        "RECORD_AUDIO"
-      ]
+      "package": "com.financetracker.app"
     },
     "web": {
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro"
     },
     "plugins": [
       "expo-router",
-      "expo-font",
-      "expo-web-browser"
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
