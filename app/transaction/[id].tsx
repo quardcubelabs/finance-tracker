@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   View,
   Text,
@@ -7,7 +6,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Stack, useRouter, useLocalSearchParams } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
 import Colors from '@/constants/Colors';
 import { recentTransactions } from '@/mocks/transactions';
 
@@ -30,7 +29,7 @@ export default function TransactionDetailsScreen() {
                 onPress={() => router.back()}
                 style={styles.backButton}
               >
-                <Ionicons name="arrow-back" size={24} color={Colors.text} />
+                <Icon name="arrow-back" size={24} color={Colors.text} />
               </TouchableOpacity>
             ),
           }}
@@ -54,7 +53,7 @@ export default function TransactionDetailsScreen() {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <Ionicons name="arrow-back" size={24} color={Colors.text} />
+              <Icon name="arrow-back" size={24} color={Colors.text} />
             </TouchableOpacity>
           ),
         }}
@@ -63,7 +62,7 @@ export default function TransactionDetailsScreen() {
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.statusCard}>
           <View style={styles.statusIcon}>
-            <Ionicons name="checkmark-circle" size={64} color="#00AA00" />
+            <Icon name="checkmark-circle" size={64} color="#00AA00" />
           </View>
           <Text style={styles.statusText}>Transaction Successful</Text>
           <Text
@@ -125,11 +124,11 @@ export default function TransactionDetailsScreen() {
 
         <View style={styles.actionsRow}>
           <TouchableOpacity style={styles.actionButton}>
-            <Ionicons name="download" size={20} color={Colors.text} />
+            <Icon name="download" size={20} color={Colors.text} />
             <Text style={styles.actionButtonText}>Download</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.actionButton}>
-            <Ionicons name="share" size={20} color={Colors.text} />
+            <Icon name="share" size={20} color={Colors.text} />
             <Text style={styles.actionButtonText}>Share</Text>
           </TouchableOpacity>
         </View>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   View,
   Text,
@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
 import Colors from '@/constants/Colors';
 
 interface Investment {
@@ -96,7 +96,7 @@ export default function InvestScreen() {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <Ionicons name="arrow-back" size={24} color={Colors.text} />
+              <Icon name="arrow-back" size={24} color={Colors.text} />
             </TouchableOpacity>
           ),
         }}
@@ -108,7 +108,7 @@ export default function InvestScreen() {
             <View style={styles.portfolioHeader}>
               <Text style={styles.portfolioLabel}>Total Portfolio Value</Text>
               <View style={styles.portfolioChange}>
-                <Ionicons name="trending-up" size={16} color="#10B981" />
+                <Icon name="trending-up" size={16} color="#10B981" />
                 <Text style={styles.portfolioChangeText}>+4.2%</Text>
               </View>
             </View>
@@ -119,11 +119,11 @@ export default function InvestScreen() {
 
             <View style={styles.portfolioStats}>
               <View style={styles.statItem}>
-                <Ionicons name="pie-chart" size={18} color={Colors.textSecondary} />
+                <Icon name="pie-chart" size={18} color={Colors.textSecondary} />
                 <Text style={styles.statItemText}>3 Holdings</Text>
               </View>
               <View style={styles.statItem}>
-                <Ionicons name="bar-chart" size={18} color={Colors.textSecondary} />
+                <Icon name="bar-chart" size={18} color={Colors.textSecondary} />
                 <Text style={styles.statItemText}>+296% Return</Text>
               </View>
             </View>
@@ -201,9 +201,9 @@ export default function InvestScreen() {
                     </Text>
                     <View style={styles.investmentChange}>
                       {investment.isPositive ? (
-                        <Ionicons name="trending-up" size={12} color="#10B981" />
+                        <Icon name="trending-up" size={12} color="#10B981" />
                       ) : (
-                        <Ionicons name="trending-down" size={12} color="#FF4444" />
+                        <Icon name="trending-down" size={12} color="#FF4444" />
                       )}
                       <Text
                         style={[

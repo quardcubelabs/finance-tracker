@@ -7,7 +7,8 @@ import {
   Animated,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
+import Avatar from '@/components/Avatar';
 import Colors from '@/constants/Colors';
 
 export default function TransferScreen() {
@@ -65,7 +66,7 @@ export default function TransferScreen() {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <Ionicons name="arrow-back" size={24} color={Colors.text} />
+              <Icon name="arrow-back" size={24} color={Colors.text} />
             </TouchableOpacity>
           ),
           headerRight: () => (
@@ -107,11 +108,11 @@ export default function TransferScreen() {
 
         <View style={styles.actionButtons}>
           <TouchableOpacity style={styles.scheduleButton}>
-            <Ionicons name="calendar" size={20} color={Colors.text} />
+            <Icon name="calendar" size={20} color={Colors.text} />
             <Text style={styles.buttonText}>Schedule Payment</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.noteButton}>
-            <Ionicons name="add" size={20} color="#FF4444" />
+            <Icon name="add" size={20} color="#FF4444" />
             <Text style={styles.noteButtonText}>Add Note</Text>
           </TouchableOpacity>
         </View>
@@ -153,7 +154,7 @@ export default function TransferScreen() {
               ]}
               onPress={() => handleNumberPress('del')}
             >
-              <Ionicons name="backspace" size={24} color={Colors.text} />
+              <Icon name="backspace" size={24} color={Colors.text} />
             </TouchableOpacity>
           </View>
         </View>

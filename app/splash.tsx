@@ -1,12 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
+import { useRouter } from 'expo-router';
 import Colors from '@/constants/Colors';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function SplashScreen() {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
+  const router = useRouter();
+  const { isAuthenticated, isLoading } = useAuth();
 
   useEffect(() => {
+    // Start animations
     Animated.parallel([
       Animated.timing(fadeAnim, {
         toValue: 1,
@@ -20,7 +25,28 @@ export default function SplashScreen() {
         useNativeDriver: true,
       }),
     ]).start();
-  }, [fadeAnim, scaleAnim]);
+
+    // Navigation timer - wait for auth to load then navigate
+    const navigationTimer = setTimeout(() => {
+      console.log('Splash navigation check:', { isAuthenticated, isLoading });
+      
+      if (!isLoading) {
+        if (isAuthenticated) {
+          console.log('Navigating to main app');
+          router.replace('/(tabs)');
+        } else {
+          console.log('Navigating to login');
+          router.replace('/login');
+        }
+      } else {
+        // If still loading after timeout, just go to login
+        console.log('Still loading, going to login');
+        router.replace('/login');
+      }
+    }, 2500);
+
+    return () => clearTimeout(navigationTimer);
+  }, [fadeAnim, scaleAnim, isAuthenticated, isLoading, router]);
 
   return (
     <View style={styles.container}>

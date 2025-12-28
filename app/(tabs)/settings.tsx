@@ -1,7 +1,7 @@
-import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, Alert } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
+import Avatar from '@/components/Avatar';
 import Colors from '@/constants/Colors';
 import { usePreferences } from '@/contexts/PreferencesContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -77,9 +77,7 @@ export default function SettingsScreen() {
       />
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.profileSection}>
-          <View style={styles.profileAvatar}>
-            <Text style={styles.profileAvatarText}>👤</Text>
-          </View>
+          <Avatar name={user?.name || 'Andrew John'} size={64} variant="user" />
           <View style={styles.profileInfo}>
             <Text style={styles.profileName}>{user?.name || 'Andrew John'}</Text>
             <Text style={styles.profileEmail}>{user?.email || 'andrew.john@email.com'}</Text>
@@ -94,20 +92,20 @@ export default function SettingsScreen() {
           <TouchableOpacity style={styles.settingItem} onPress={handlePersonalInfo}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: Colors.lightBlue }]}>
-                <Ionicons name="person" size={20} color={Colors.text} />
+                <Icon name="person" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Personal Information</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+            <Icon name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.settingItem} onPress={handlePaymentMethods}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: Colors.lightYellow }]}>
-                <Ionicons name="card" size={20} color={Colors.text} />
+                <Icon name="card" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Payment Methods</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+            <Icon name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
         </View>
 
@@ -116,7 +114,7 @@ export default function SettingsScreen() {
           <View style={styles.settingItem}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: '#FFD0E0' }]}>
-                <Ionicons name="notifications" size={20} color={Colors.text} />
+                <Icon name="notifications" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Notifications</Text>
             </View>
@@ -130,7 +128,7 @@ export default function SettingsScreen() {
           <View style={styles.settingItem}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: '#E0D5FF' }]}>
-                <Ionicons name="moon" size={20} color={Colors.text} />
+                <Icon name="moon" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Dark Mode</Text>
             </View>
@@ -148,7 +146,7 @@ export default function SettingsScreen() {
           <View style={styles.settingItem}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: Colors.lightBlue }]}>
-                <Ionicons name="shield-checkmark" size={20} color={Colors.text} />
+                <Icon name="shield-checkmark" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Biometric Authentication</Text>
             </View>
@@ -162,11 +160,11 @@ export default function SettingsScreen() {
           <TouchableOpacity style={styles.settingItem} onPress={handleChangePassword}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: Colors.lightYellow }]}>
-                <Ionicons name="lock-closed" size={20} color={Colors.text} />
+                <Icon name="lock-closed" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Change Password</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+            <Icon name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
         </View>
 
@@ -175,25 +173,25 @@ export default function SettingsScreen() {
           <TouchableOpacity style={styles.settingItem} onPress={handleHelpCenter}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: '#FFD0E0' }]}>
-                <Ionicons name="help-circle" size={20} color={Colors.text} />
+                <Icon name="help-circle" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Help Center</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+            <Icon name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.settingItem} onPress={handleTermsPrivacy}>
             <View style={styles.settingLeft}>
               <View style={[styles.settingIcon, { backgroundColor: '#E0D5FF' }]}>
-                <Ionicons name="document-text" size={20} color={Colors.text} />
+                <Icon name="document-text" size={20} color={Colors.text} />
               </View>
               <Text style={styles.settingText}>Terms & Privacy</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+            <Icon name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
         </View>
 
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <Ionicons name="log-out" size={20} color="#FF4444" />
+          <Icon name="log-out" size={20} color="#FF4444" />
           <Text style={styles.logoutText}>Log Out</Text>
         </TouchableOpacity>
 
@@ -222,17 +220,6 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 16,
     marginBottom: 24,
-  },
-  profileAvatar: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: Colors.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  profileAvatarText: {
-    fontSize: 32,
   },
   profileInfo: {
     flex: 1,

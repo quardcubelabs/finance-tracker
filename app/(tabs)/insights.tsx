@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Stack } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
 import Colors from '@/constants/Colors';
 
 const spendingCategories = [
@@ -27,16 +27,18 @@ const monthlyData = [
 ];
 
 export default function InsightsScreen() {
-  const [selectedPeriod, setSelectedPeriod] = useState('Month');
-
-  const totalSpending = spendingCategories.reduce(
-    (sum, cat) => sum + cat.amount,
-    0
-  );
-
-  const maxValue = Math.max(
-    ...monthlyData.map((d) => Math.max(d.income, d.expense))
-  );
+  // Data for the design
+  const categories = [
+    { name: 'Food & Dining', color: '#F44F4F', amount: 432.5 },
+    { name: 'Shopping', color: '#2DD6C1', amount: 289.0 },
+    { name: 'Transportation', color: '#3B82F6', amount: 156.0 },
+    { name: 'Entertainment', color: '#A3E635', amount: 98.0 },
+    { name: 'Bills & Utilities', color: '#C084FC', amount: 580.0 },
+  ];
+  const budget = 2500;
+  const spent = 1700;
+  const remaining = budget - spent;
+  const percentUsed = Math.round((spent / budget) * 100);
 
   return (
     <View style={styles.container}>
@@ -48,120 +50,54 @@ export default function InsightsScreen() {
         }}
       />
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <View style={styles.periodSelector}>
-          {['Week', 'Month', 'Year'].map((period) => (
-            <TouchableOpacity
-              key={period}
-              style={[
-                styles.periodButton,
-                selectedPeriod === period && styles.periodButtonActive,
-              ]}
-              onPress={() => setSelectedPeriod(period)}
-            >
-              <Text
-                style={[
-                  styles.periodButtonText,
-                  selectedPeriod === period && styles.periodButtonTextActive,
-                ]}
-              >
-                {period}
-              </Text>
-            </TouchableOpacity>
+        {/* Spending by Category */}
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Spending by Category</Text>
+          {categories.map((cat, idx) => (
+            <View key={cat.name} style={styles.categoryRow}>
+              <View style={styles.categoryLabelRow}>
+                <View style={[styles.dot, { backgroundColor: cat.color }]} />
+                <Text style={styles.categoryLabel}>{cat.name}</Text>
+              </View>
+              <Text style={styles.categoryAmount}>${cat.amount.toFixed(2)}</Text>
+              <View style={styles.progressBarBg}>
+                <View
+                  style={[styles.progressBarFg, { backgroundColor: cat.color, width: `${Math.min(100, (cat.amount / budget) * 100)}%` }]} />
+              </View>
+            </View>
           ))}
         </View>
 
-        <View style={styles.summaryCards}>
-          <View style={[styles.summaryCard, { backgroundColor: Colors.primary }]}>
-            <View style={styles.summaryIcon}>
-              <Ionicons name="trending-up" size={20} color={Colors.text} />
-            </View>
-            <Text style={styles.summaryLabel}>Income</Text>
-            <Text style={styles.summaryAmount}>$5,600</Text>
-            <Text style={styles.summaryChange}>+12.5% from last month</Text>
-          </View>
-          <View style={[styles.summaryCard, { backgroundColor: Colors.cardBackground }]}>
-            <View style={styles.summaryIcon}>
-              <Ionicons name="trending-down" size={20} color="#FF4444" />
-            </View>
-            <Text style={styles.summaryLabel}>Expenses</Text>
-            <Text style={styles.summaryAmount}>$3,520</Text>
-            <Text style={styles.summaryChange}>-8.2% from last month</Text>
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Spending Breakdown</Text>
-            <Ionicons name="pie-chart" size={20} color={Colors.text} />
-          </View>
-
-          <View style={styles.pieChartContainer}>
-            <View style={styles.pieChart}>
-              <Text style={styles.pieChartAmount}>${totalSpending}</Text>
-              <Text style={styles.pieChartLabel}>Total Spent</Text>
-            </View>
-          </View>
-
-          <View style={styles.categoriesList}>
-            {spendingCategories.map((category, index) => (
-              <View key={index} style={styles.categoryItem}>
-                <View style={styles.categoryLeft}>
-                  <View
-                    style={[
-                      styles.categoryDot,
-                      { backgroundColor: category.color },
-                    ]}
-                  />
-                  <Text style={styles.categoryName}>{category.name}</Text>
-                </View>
-                <View style={styles.categoryRight}>
-                  <Text style={styles.categoryAmount}>${category.amount}</Text>
-                  <Text style={styles.categoryPercentage}>
-                    {category.percentage}%
-                  </Text>
+        {/* Budget Status */}
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Budget Status</Text>
+          <View style={styles.budgetRow}>
+            <View style={styles.budgetCircleWrap}>
+              <View style={styles.budgetCircleBg}>
+                <View
+                  style={[styles.budgetCircleFg, { transform: [{ rotate: `${(percentUsed / 100) * 360}deg` }], borderColor: '#D1FF3D' }]} />
+                <View style={styles.budgetCircleInner}>
+                  <Text style={styles.budgetCircleText}>{percentUsed}%</Text>
+                  <Text style={styles.budgetCircleSub}>Used</Text>
                 </View>
               </View>
-            ))}
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Income vs Expenses</Text>
-          <View style={styles.chartContainer}>
-            {monthlyData.map((data, index) => (
-              <View key={index} style={styles.barGroup}>
-                <View style={styles.bars}>
-                  <View
-                    style={[
-                      styles.bar,
-                      styles.incomeBar,
-                      { height: (data.income / maxValue) * 120 },
-                    ]}
-                  />
-                  <View
-                    style={[
-                      styles.bar,
-                      styles.expenseBar,
-                      { height: (data.expense / maxValue) * 120 },
-                    ]}
-                  />
-                </View>
-                <Text style={styles.barLabel}>{data.month}</Text>
+            </View>
+            <View style={styles.budgetSummary}>
+              <View style={styles.budgetSummaryRow}>
+                <Text style={styles.budgetSummaryLabel}>Budget</Text>
+                <Text style={styles.budgetSummaryValue}>${budget.toLocaleString()}</Text>
               </View>
-            ))}
-          </View>
-          <View style={styles.legend}>
-            <View style={styles.legendItem}>
-              <View style={[styles.legendDot, styles.incomeDot]} />
-              <Text style={styles.legendText}>Income</Text>
-            </View>
-            <View style={styles.legendItem}>
-              <View style={[styles.legendDot, styles.expenseDot]} />
-              <Text style={styles.legendText}>Expenses</Text>
+              <View style={styles.budgetSummaryRow}>
+                <Text style={styles.budgetSummaryLabel}>Spent</Text>
+                <Text style={styles.budgetSummaryValue}>${spent.toLocaleString()}</Text>
+              </View>
+              <View style={styles.budgetSummaryRow}>
+                <Text style={styles.budgetSummaryLabel}>Remaining</Text>
+                <Text style={[styles.budgetSummaryValue, { color: '#00C853' }]}>${remaining.toLocaleString()}</Text>
+              </View>
             </View>
           </View>
         </View>
-
         <View style={styles.bottomPadding} />
       </ScrollView>
     </View>
@@ -176,197 +112,139 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
   },
-  periodSelector: {
-    flexDirection: 'row',
-    gap: 8,
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    marginBottom: 16,
-  },
-  periodButton: {
-    flex: 1,
-    paddingVertical: 10,
-    borderRadius: 12,
+  card: {
     backgroundColor: Colors.cardBackground,
-    alignItems: 'center',
-  },
-  periodButtonActive: {
-    backgroundColor: Colors.text,
-  },
-  periodButtonText: {
-    fontSize: 14,
-    fontWeight: '600' as const,
-    color: Colors.textSecondary,
-  },
-  periodButtonTextActive: {
-    color: Colors.cardBackground,
-  },
-  summaryCards: {
-    flexDirection: 'row',
-    paddingHorizontal: 16,
-    gap: 12,
-    marginBottom: 24,
-  },
-  summaryCard: {
-    flex: 1,
-    padding: 16,
-    borderRadius: 16,
-  },
-  summaryIcon: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  summaryLabel: {
-    fontSize: 13,
-    color: Colors.textSecondary,
-    marginBottom: 4,
-  },
-  summaryAmount: {
-    fontSize: 24,
-    fontWeight: '700' as const,
-    color: Colors.text,
-    marginBottom: 4,
-  },
-  summaryChange: {
-    fontSize: 11,
-    color: Colors.textSecondary,
-  },
-  section: {
-    paddingHorizontal: 16,
-    marginBottom: 24,
-  },
-  sectionHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    borderRadius: 20,
+    padding: 24,
+    marginHorizontal: 16,
+    marginTop: 24,
     marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 8,
+    elevation: 2,
   },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: '700' as const,
+  cardTitle: {
+    fontSize: 20,
+    fontWeight: '700',
     color: Colors.text,
+    marginBottom: 20,
   },
-  pieChartContainer: {
-    alignItems: 'center',
-    marginBottom: 24,
+  categoryRow: {
+    marginBottom: 18,
   },
-  pieChart: {
-    width: 160,
-    height: 160,
-    borderRadius: 80,
-    backgroundColor: Colors.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  pieChartAmount: {
-    fontSize: 28,
-    fontWeight: '700' as const,
-    color: Colors.text,
-  },
-  pieChartLabel: {
-    fontSize: 13,
-    color: Colors.text,
-    opacity: 0.7,
-  },
-  categoriesList: {
-    gap: 12,
-  },
-  categoryItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: Colors.cardBackground,
-    padding: 16,
-    borderRadius: 12,
-  },
-  categoryLeft: {
+  categoryLabelRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    marginBottom: 2,
   },
-  categoryDot: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
+  dot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginRight: 8,
   },
-  categoryName: {
-    fontSize: 14,
-    fontWeight: '600' as const,
+  categoryLabel: {
+    fontSize: 16,
     color: Colors.text,
-  },
-  categoryRight: {
-    alignItems: 'flex-end',
+    fontWeight: '600',
   },
   categoryAmount: {
-    fontSize: 15,
-    fontWeight: '700' as const,
+    fontSize: 16,
     color: Colors.text,
+    fontWeight: '700',
+    position: 'absolute',
+    right: 0,
+    top: 0,
   },
-  categoryPercentage: {
-    fontSize: 12,
-    color: Colors.textSecondary,
-  },
-  chartContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: Colors.cardBackground,
-    padding: 20,
-    borderRadius: 16,
-    marginBottom: 16,
-  },
-  barGroup: {
-    alignItems: 'center',
-    gap: 8,
-  },
-  bars: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    gap: 4,
-    height: 120,
-  },
-  bar: {
-    width: 20,
+  progressBarBg: {
+    width: '100%',
+    height: 7,
+    backgroundColor: '#E5E5E5',
     borderRadius: 4,
+    marginTop: 8,
+    marginBottom: 2,
+    overflow: 'hidden',
   },
-  incomeBar: {
-    backgroundColor: Colors.primary,
+  progressBarFg: {
+    height: 7,
+    borderRadius: 4,
+    position: 'absolute',
+    left: 0,
+    top: 0,
   },
-  expenseBar: {
-    backgroundColor: Colors.lightBlue,
-  },
-  barLabel: {
-    fontSize: 12,
-    color: Colors.textSecondary,
-  },
-  legend: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 24,
-  },
-  legendItem: {
+  budgetRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    marginTop: 8,
   },
-  legendDot: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
+  budgetCircleWrap: {
+    marginRight: 24,
   },
-  incomeDot: {
-    backgroundColor: Colors.primary,
+  budgetCircleBg: {
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    backgroundColor: '#F7F7F7',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
   },
-  expenseDot: {
-    backgroundColor: Colors.lightBlue,
+  budgetCircleFg: {
+    position: 'absolute',
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    borderWidth: 7,
+    borderColor: '#D1FF3D',
+    borderRightColor: 'transparent',
+    borderBottomColor: 'transparent',
+    borderLeftColor: 'transparent',
+    borderTopColor: '#D1FF3D',
+    top: 0,
+    left: 0,
   },
-  legendText: {
+  budgetCircleInner: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    width: 90,
+    height: 90,
+    left: 0,
+    top: 0,
+  },
+  budgetCircleText: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#B2B200',
+    textAlign: 'center',
+  },
+  budgetCircleSub: {
     fontSize: 13,
     color: Colors.textSecondary,
+    textAlign: 'center',
+    marginTop: -2,
+  },
+  budgetSummary: {
+    flex: 1,
+    justifyContent: 'center',
+    marginLeft: 8,
+  },
+  budgetSummaryRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  budgetSummaryLabel: {
+    fontSize: 15,
+    color: Colors.textSecondary,
+  },
+  budgetSummaryValue: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: Colors.text,
   },
   bottomPadding: {
     height: 40,

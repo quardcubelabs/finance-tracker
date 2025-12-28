@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   View,
   Text,
@@ -7,7 +6,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
 import Colors from '@/constants/Colors';
 
 interface Account {
@@ -67,7 +66,7 @@ export default function BalanceScreen() {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <Ionicons name="arrow-back" size={24} color={Colors.text} />
+              <Icon name="arrow-back" size={24} color={Colors.text} />
             </TouchableOpacity>
           ),
         }}
@@ -79,12 +78,12 @@ export default function BalanceScreen() {
             <View style={styles.totalHeader}>
               <Text style={styles.totalLabel}>Total Balance</Text>
               <TouchableOpacity style={styles.eyeButton}>
-                <Ionicons name="eye" size={20} color={Colors.text} />
+                <Icon name="eye" size={20} color={Colors.text} />
               </TouchableOpacity>
             </View>
             <Text style={styles.totalAmount}>{totalBalance}</Text>
             <View style={styles.totalChange}>
-              <Ionicons name="trending-up" size={16} color="#10B981" />
+              <Icon name="trending-up" size={16} color="#10B981" />
               <Text style={styles.totalChangeText}>+$1,432.94 this month</Text>
             </View>
           </View>
@@ -92,7 +91,7 @@ export default function BalanceScreen() {
           <View style={styles.quickStats}>
             <View style={styles.statCard}>
               <View style={styles.statIcon}>
-                <Ionicons name="trending-up" size={20} color="#10B981" />
+                <Icon name="trending-up" size={20} color="#10B981" />
               </View>
               <Text style={styles.statLabel}>Income</Text>
               <Text style={styles.statValue}>$5,240</Text>
@@ -100,7 +99,7 @@ export default function BalanceScreen() {
             </View>
             <View style={styles.statCard}>
               <View style={styles.statIcon}>
-                <Ionicons name="trending-down" size={20} color="#FF4444" />
+                <Icon name="trending-down" size={20} color="#FF4444" />
               </View>
               <Text style={styles.statLabel}>Expenses</Text>
               <Text style={styles.statValue}>$3,807</Text>
@@ -122,7 +121,7 @@ export default function BalanceScreen() {
                     },
                   ]}
                 >
-                  <Ionicons name="logo-usd"
+                  <Icon name="logo-usd"
                     size={24}
                     color={account.isPositive ? Colors.text : '#FF4444'}
                   />
@@ -135,9 +134,9 @@ export default function BalanceScreen() {
                   <Text style={styles.accountBalance}>{account.balance}</Text>
                   <View style={styles.accountChange}>
                     {account.isPositive ? (
-                      <Ionicons name="trending-up" size={12} color="#10B981" />
+                      <Icon name="trending-up" size={12} color="#10B981" />
                     ) : (
-                      <Ionicons name="trending-down" size={12} color="#FF4444" />
+                      <Icon name="trending-down" size={12} color="#FF4444" />
                     )}
                     <Text
                       style={[

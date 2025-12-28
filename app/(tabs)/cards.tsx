@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Stack } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
 import Colors from '@/constants/Colors';
 
 const cards = [
@@ -35,7 +35,7 @@ export default function CardsScreen() {
           headerTitle: 'Cards',
           headerRight: () => (
             <TouchableOpacity style={styles.addButton}>
-              <Ionicons name="add" size={20} color={Colors.text} />
+              <Icon name="add" size={20} color={Colors.text} />
             </TouchableOpacity>
           ),
         }}
@@ -47,7 +47,7 @@ export default function CardsScreen() {
               <View style={[styles.card, { backgroundColor: card.color }]}>
                 <View style={styles.cardHeader}>
                   <Text style={styles.cardType}>{card.type}</Text>
-                  <Ionicons name="eye" size={20} color={Colors.text} />
+                  <Icon name="eye" size={20} color={Colors.text} />
                 </View>
                 <View style={styles.cardBody}>
                   <Text style={styles.cardBalance}>${card.balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</Text>
@@ -66,7 +66,7 @@ export default function CardsScreen() {
 
           <TouchableOpacity style={styles.addCardButton}>
             <View style={styles.addCardIcon}>
-              <Ionicons name="add" size={32} color={Colors.text} />
+              <Icon name="add" size={32} color={Colors.text} />
             </View>
             <Text style={styles.addCardText}>Add New Card</Text>
           </TouchableOpacity>
@@ -77,7 +77,7 @@ export default function CardsScreen() {
           <TouchableOpacity style={styles.actionItem}>
             <View style={styles.actionLeft}>
               <View style={[styles.actionIcon, { backgroundColor: Colors.lightBlue }]}>
-                <Ionicons name="card" size={20} color={Colors.text} />
+                <Icon name="card" size={20} color={Colors.text} />
               </View>
               <Text style={styles.actionText}>Card Details</Text>
             </View>
@@ -86,7 +86,7 @@ export default function CardsScreen() {
           <TouchableOpacity style={styles.actionItem}>
             <View style={styles.actionLeft}>
               <View style={[styles.actionIcon, { backgroundColor: Colors.lightYellow }]}>
-                <Ionicons name="lock-closed" size={20} color={Colors.text} />
+                <Icon name="lock-closed" size={20} color={Colors.text} />
               </View>
               <Text style={styles.actionText}>Freeze Card</Text>
             </View>

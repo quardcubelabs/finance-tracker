@@ -7,7 +7,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
 import Colors from '@/constants/Colors';
 
 const { width } = Dimensions.get('window');
@@ -29,7 +29,7 @@ export default function ScanQRScreen() {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <Ionicons name="arrow-back" size={24} color="#fff" />
+              <Icon name="arrow-back" size={24} color="#fff" />
             </TouchableOpacity>
           ),
         }}
@@ -57,11 +57,11 @@ export default function ScanQRScreen() {
 
         <View style={styles.controls}>
           <TouchableOpacity style={styles.controlButton}>
-            <Ionicons name="flashlight" size={28} color="#fff" />
+            <Icon name="flashlight" size={28} color="#fff" />
             <Text style={styles.controlText}>Flash</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.controlButton}>
-            <Ionicons name="image" size={28} color="#fff" />
+            <Icon name="image" size={28} color="#fff" />
             <Text style={styles.controlText}>Gallery</Text>
           </TouchableOpacity>
         </View>

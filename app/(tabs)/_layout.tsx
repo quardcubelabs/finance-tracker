@@ -1,7 +1,8 @@
 import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
 import React from 'react';
 import Colors from '@/constants/Colors';
+import { View, TouchableOpacity } from 'react-native';
 
 export default function TabLayout() {
   return (
@@ -11,16 +12,30 @@ export default function TabLayout() {
         tabBarInactiveTintColor: Colors.textSecondary,
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: Colors.cardBackground,
-          borderTopWidth: 1,
-          borderTopColor: Colors.border,
-          height: 60,
-          paddingBottom: 8,
-          paddingTop: 8,
+          backgroundColor: 'white',
+          borderTopWidth: 0,
+          borderTopLeftRadius: 25,
+          borderTopRightRadius: 25,
+          height: 80,
+          paddingBottom: 20,
+          paddingTop: 15,
+          position: 'absolute',
+          elevation: 10,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: -3,
+          },
+          shadowOpacity: 0.1,
+          shadowRadius: 3,
         },
         tabBarLabelStyle: {
-          fontSize: 11,
-          fontWeight: '600' as const,
+          fontSize: 12,
+          fontWeight: '500' as const,
+          marginTop: 5,
+        },
+        tabBarIconStyle: {
+          marginTop: 0,
         },
       }}
     >
@@ -28,15 +43,44 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size }) => <Ionicons name="home" size={size} color={color} />,
+          tabBarIcon: ({ color, size, focused }) => (
+            <Icon name="home" size={focused ? 26 : 24} color={focused ? '#00D4AA' : color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="insights"
         options={{
           title: 'Insights',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="trending-up" size={size} color={color} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <Icon name="trending-up" size={focused ? 26 : 24} color={focused ? '#00D4AA' : color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="scan"
+        options={{
+          title: '',
+          tabBarIcon: ({ color, size, focused }) => (
+            <View style={{
+              width: 60,
+              height: 60,
+              borderRadius: 30,
+              backgroundColor: '#00D4AA',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: -25,
+              elevation: 5,
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+            }}>
+              <Icon name="scan" size={28} color="white" />
+            </View>
           ),
         }}
       />
@@ -44,8 +88,8 @@ export default function TabLayout() {
         name="cards"
         options={{
           title: 'Cards',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="card" size={size} color={color} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <Icon name="card" size={focused ? 26 : 24} color={focused ? '#00D4AA' : color} />
           ),
         }}
       />
@@ -53,8 +97,8 @@ export default function TabLayout() {
         name="settings"
         options={{
           title: 'Settings',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="settings" size={size} color={color} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <Icon name="settings" size={focused ? 26 : 24} color={focused ? '#00D4AA' : color} />
           ),
         }}
       />

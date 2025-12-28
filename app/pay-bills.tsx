@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   View,
   Text,
@@ -8,7 +8,7 @@ import {
   TextInput,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
 import Colors from '@/constants/Colors';
 
 interface Bill {
@@ -67,13 +67,13 @@ export default function PayBillsScreen() {
   const getIconComponent = (iconName: string) => {
     switch (iconName) {
       case 'zap':
-        return <Ionicons name="flash" size={24} color={Colors.text} />;
+        return <Icon name="flash" size={24} color={Colors.text} />;
       case 'droplets':
-        return <Ionicons name="water" size={24} color={Colors.text} />;
+        return <Icon name="water" size={24} color={Colors.text} />;
       case 'wifi':
-        return <Ionicons name="wifi" size={24} color={Colors.text} />;
+        return <Icon name="wifi" size={24} color={Colors.text} />;
       case 'smartphone':
-        return <Ionicons name="phone-portrait" size={24} color={Colors.text} />;
+        return <Icon name="phone-portrait" size={24} color={Colors.text} />;
       default:
         return null;
     }
@@ -91,7 +91,7 @@ export default function PayBillsScreen() {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <Ionicons name="arrow-back" size={24} color={Colors.text} />
+              <Icon name="arrow-back" size={24} color={Colors.text} />
             </TouchableOpacity>
           ),
         }}
@@ -100,7 +100,7 @@ export default function PayBillsScreen() {
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <View style={styles.searchContainer}>
-            <Ionicons name="search" size={20} color={Colors.textSecondary} />
+            <Icon name="search" size={20} color={Colors.textSecondary} />
             <TextInput
               style={styles.searchInput}
               placeholder="Search bills..."

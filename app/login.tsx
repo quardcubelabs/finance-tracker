@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   View,
   Text,
@@ -11,7 +11,7 @@ import {
   Alert,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
 import Colors from '@/constants/Colors';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -69,7 +69,7 @@ export default function LoginScreen() {
         <View style={styles.form}>
           <View style={styles.inputContainer}>
             <View style={styles.inputIcon}>
-              <Ionicons name="mail" size={20} color={Colors.textSecondary} />
+              <Icon name="mail" size={20} color={Colors.textSecondary} />
             </View>
             <TextInput
               style={styles.input}
@@ -86,7 +86,7 @@ export default function LoginScreen() {
 
           <View style={styles.inputContainer}>
             <View style={styles.inputIcon}>
-              <Ionicons name="lock-closed" size={20} color={Colors.textSecondary} />
+              <Icon name="lock-closed" size={20} color={Colors.textSecondary} />
             </View>
             <TextInput
               style={styles.input}

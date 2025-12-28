@@ -7,7 +7,7 @@ import {
   Share,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import { MaterialIcons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
 import Colors from '@/constants/Colors';
 
 export default function ReceiveScreen() {
@@ -40,7 +40,7 @@ export default function ReceiveScreen() {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <MaterialIcons name="arrow-back" size={24} color={Colors.text} />
+              <Icon name="arrow-back" size={24} color={Colors.text} />
             </TouchableOpacity>
           ),
         }}
@@ -82,7 +82,7 @@ export default function ReceiveScreen() {
             <View style={styles.accountNumberRow}>
               <Text style={styles.accountNumber}>**** **** **** 7281</Text>
               <TouchableOpacity onPress={handleCopy} style={styles.copyButton}>
-                <MaterialIcons name="content-copy" size={18} color={Colors.text} />
+                <Icon name="content-copy" size={18} color={Colors.text} />
               </TouchableOpacity>
             </View>
           </View>
@@ -93,11 +93,11 @@ export default function ReceiveScreen() {
             style={styles.actionButton}
             onPress={handleShare}
           >
-            <MaterialIcons name="share" size={20} color={Colors.text} />
+            <Icon name="share" size={20} color={Colors.text} />
             <Text style={styles.actionButtonText}>Share</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.actionButton}>
-            <MaterialIcons name="download" size={20} color={Colors.text} />
+            <Icon name="download" size={20} color={Colors.text} />
             <Text style={styles.actionButtonText}>Save QR</Text>
           </TouchableOpacity>
         </View>

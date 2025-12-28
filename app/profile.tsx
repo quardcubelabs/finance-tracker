@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
+import Avatar from '@/components/Avatar';
 import Colors from '@/constants/Colors';
 
 export default function ProfileScreen() {
@@ -25,7 +26,7 @@ export default function ProfileScreen() {
               onPress={() => router.back()}
               style={styles.backButton}
             >
-              <Ionicons name="arrow-back" size={24} color={Colors.text} />
+              <Icon name="arrow-back" size={24} color={Colors.text} />
             </TouchableOpacity>
           ),
         }}
@@ -33,9 +34,7 @@ export default function ProfileScreen() {
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.profileHeader}>
-          <View style={styles.avatarLarge}>
-            <Text style={styles.avatarLargeText}>👤</Text>
-          </View>
+          <Avatar name="Andrew John" size={80} variant="user" />
           <Text style={styles.profileName}>Andrew John</Text>
           <Text style={styles.profileEmail}>andrew.john@email.com</Text>
         </View>
@@ -46,52 +45,52 @@ export default function ProfileScreen() {
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: Colors.lightBlue }]}>
-                <Ionicons name="person" size={20} color={Colors.text} />
+                <Icon name="person" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Full Name</Text>
             </View>
             <View style={styles.menuItemRight}>
               <Text style={styles.menuItemValue}>Andrew John</Text>
-              <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+              <Icon name="chevron-forward" size={20} color={Colors.textSecondary} />
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: Colors.lightYellow }]}>
-                <Ionicons name="mail" size={20} color={Colors.text} />
+                <Icon name="mail" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Email</Text>
             </View>
             <View style={styles.menuItemRight}>
               <Text style={styles.menuItemValue}>andrew@email.com</Text>
-              <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+              <Icon name="chevron-forward" size={20} color={Colors.textSecondary} />
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: '#FFE5E5' }]}>
-                <Ionicons name="call" size={20} color={Colors.text} />
+                <Icon name="call" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Phone</Text>
             </View>
             <View style={styles.menuItemRight}>
               <Text style={styles.menuItemValue}>+1 234 567 890</Text>
-              <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+              <Icon name="chevron-forward" size={20} color={Colors.textSecondary} />
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: '#E5F5E5' }]}>
-                <Ionicons name="location" size={20} color={Colors.text} />
+                <Icon name="location" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Address</Text>
             </View>
             <View style={styles.menuItemRight}>
               <Text style={styles.menuItemValue}>New York, USA</Text>
-              <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+              <Icon name="chevron-forward" size={20} color={Colors.textSecondary} />
             </View>
           </TouchableOpacity>
         </View>
@@ -102,31 +101,31 @@ export default function ProfileScreen() {
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: Colors.primary }]}>
-                <Ionicons name="card" size={20} color={Colors.text} />
+                <Icon name="card" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Payment Methods</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+            <Icon name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: '#E5E5FF' }]}>
-                <Ionicons name="shield-checkmark" size={20} color={Colors.text} />
+                <Icon name="shield-checkmark" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Security</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+            <Icon name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
               <View style={[styles.menuIcon, { backgroundColor: '#FFE5F5' }]}>
-                <Ionicons name="notifications" size={20} color={Colors.text} />
+                <Icon name="notifications" size={20} color={Colors.text} />
               </View>
               <Text style={styles.menuItemText}>Notifications</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color={Colors.textSecondary} />
+            <Icon name="chevron-forward" size={20} color={Colors.textSecondary} />
           </TouchableOpacity>
         </View>
 
@@ -154,18 +153,6 @@ const styles = StyleSheet.create({
   profileHeader: {
     alignItems: 'center',
     paddingVertical: 32,
-  },
-  avatarLarge: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: Colors.cardBackground,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  avatarLargeText: {
-    fontSize: 48,
   },
   profileName: {
     fontSize: 24,

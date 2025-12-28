@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import Icon from '@/components/Icon';
+import Avatar from '@/components/Avatar';
 import Colors from '@/constants/Colors';
 import { quickSendContacts, recentTransactions } from '@/mocks/transactions';
 
@@ -38,8 +39,8 @@ export default function HomeScreen() {
           ),
           headerLeft: () => (
             <TouchableOpacity onPress={() => router.push('/profile')}>
-              <View style={styles.avatar}>
-                <Text style={styles.avatarText}>👤</Text>
+              <View style={styles.headerAvatar}>
+                <Avatar name="Andrew John" size={40} variant="user" />
               </View>
             </TouchableOpacity>
           ),
@@ -73,14 +74,14 @@ export default function HomeScreen() {
             style={[styles.actionButton, styles.actionButtonBlue]}
             onPress={() => router.push('/transfer')}
           >
-            <Ionicons name="arrow-up" size={24} color="#000" />
+            <Icon name="arrow-up" size={24} color="#000" />
             <Text style={styles.actionText}>Transfer</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.actionButton, styles.actionButtonYellow]}
             onPress={() => router.push('/receive')}
           >
-            <Ionicons name="arrow-down" size={24} color="#000" />
+            <Icon name="arrow-down" size={24} color="#000" />
             <Text style={styles.actionText}>Receive</Text>
           </TouchableOpacity>
         </View>
@@ -90,13 +91,13 @@ export default function HomeScreen() {
             <Text style={styles.sectionTitle}>Quick Send</Text>
             <TouchableOpacity style={styles.seeAllButton}>
               <Text style={styles.seeAllText}>See All</Text>
-              <Ionicons name="chevron-forward" size={16} color={Colors.textSecondary} />
+              <Icon name="chevron-forward" size={16} color={Colors.textSecondary} />
             </TouchableOpacity>
           </View>
 
           <View style={styles.quickSendList}>
             <TouchableOpacity style={styles.addContact}>
-              <Ionicons name="add" size={24} color={Colors.textSecondary} />
+              <Icon name="add" size={24} color={Colors.textSecondary} />
             </TouchableOpacity>
             {quickSendContacts.map((contact) => (
               <TouchableOpacity key={contact.id} style={styles.contact}>
@@ -113,7 +114,7 @@ export default function HomeScreen() {
           style={styles.aiButton}
           onPress={() => router.push('/assistant')}
         >
-          <Ionicons name="sparkles" size={20} color="#fff" />
+          <Icon name="sparkles" size={20} color="#fff" />
           <Text style={styles.aiButtonText}>AI Assistant</Text>
         </TouchableOpacity>
 
@@ -122,7 +123,7 @@ export default function HomeScreen() {
             <Text style={styles.sectionTitle}>Recent Transactions</Text>
             <TouchableOpacity style={styles.weekSelector}>
               <Text style={styles.weekText}>Week</Text>
-              <Ionicons name="chevron-forward" size={16} color="#000" />
+              <Icon name="chevron-forward" size={16} color="#000" />
             </TouchableOpacity>
           </View>
 
@@ -195,17 +196,8 @@ const styles = StyleSheet.create({
   notificationDot: {
     fontSize: 18,
   },
-  avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: Colors.cardBackground,
-    justifyContent: 'center',
-    alignItems: 'center',
+  headerAvatar: {
     marginLeft: 16,
-  },
-  avatarText: {
-    fontSize: 20,
   },
   balanceCard: {
     backgroundColor: Colors.primary,
